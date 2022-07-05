@@ -1,0 +1,321 @@
+.join-wrapper{
+  padding-top:20px;
+}
+.join-wrapper input:disabled{
+  color:#0a66c2;
+  font-weight:500;
+  width:40%;
+  white-space: nowrap;
+}
+.join-wrapper>h1{
+  text-align:center;
+  font-size:50px;
+  margin-block-start:0px;
+  margin-block-end:0px;
+  color:#0a66c2;
+}
+.join-info{
+  width:50%;
+  margin:auto;
+  background:#e7e9fe;
+  padding:70px;
+
+  border-radius:10px;
+}
+.join-info>h5{
+  font-size:20px;
+  margin-block-start:0px;
+  margin-block-end:0px;
+  padding-bottom:20px;
+}
+.account-type-wrapper{
+  padding-bottom:20px;
+}
+.account-type-wrapper>label{
+  font-size:20px;
+  padding-right:10px;
+}
+.account-type-wrapper>input{
+  font-size:20px;
+}
+.basic-info-wrapper>fieldset>legend,.identity-wrapper>fieldset>legend, .income-wrapper>fieldset>legend, .relative-wrapper>fieldset>legend{
+  font-size:20px;
+  font-weight:bold;
+  
+}
+.basic-info-wrapper>fieldset, .identity-wrapper>fieldset, .income-wrapper>fieldset, .relative-wrapper>fieldset{
+  border:2px inset #0a66c2;
+  border-radius:10px;
+}
+.join-names, .join-credential-password, .join-financial{
+  display:flex;
+  flex-direction:row;
+  width:90%;
+  margin:auto;
+}
+.join-credential-password, .join-financial{
+  margin-top:20px;
+}
+.join-names>input, .join-credential-password>input, .join-financial>input{
+  width:45%;
+  border-radius:10px;
+  border:2px solid lightgray;
+  height:40px;
+  padding-left:10px;
+  font-size:20px;
+  box-sizing:border-box;
+  
+}
+.join-names>input:last-child, .join-credential-password>input:last-child, .join-financial>input:last-child{
+  margin-left:auto;
+}
+.join-credential-email, .join-address{
+  margin-top:10px;
+  width:90%;
+  margin:auto;
+  box-sizing:border-box;
+}
+.join-credential-email>input, .join-address>input{
+  width:100%;
+  margin:auto;
+  border-radius:10px;
+  border:2px solid lightgray;
+  height:40px;
+  padding-left:10px;
+  font-size:20px;
+  margin-top:20px;
+  box-sizing:border-box;
+  
+}
+.identity-wrapper, .relative-wrapper{
+  margin-top:20px;
+}
+.doc-upload{
+  display:flex;
+  width:65%;
+}
+.doc-label{
+    border: 1px solid black;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.doc-label>input{
+  display:none;
+}
+.doc-label:last-child{
+  margin-left:auto;
+}
+.doc-label>span{
+  padding-left:5px;
+}
+.income-wrapper{
+  margin-top:20px;
+}
+.relative{
+  display:flex;
+  flex-direction:row;
+  
+}
+.relative input{
+  height:40px;
+  font-size:20px;
+  padding-left:5px;
+  box-sizing:border-box;
+  border-radius:10px;
+  border:2px solid lightgray;
+  
+}
+.relative-name{
+  width:50%;
+}
+.relative-sub-group{
+  width:50%;
+  margin-left:auto;
+}
+.relative-country{
+  width:60%;
+  margin-left:10px;
+}
+.relative-age{
+  float:right;
+  width:30%;
+}
+.relatives-form>button{
+  float:right;
+  margin-top:10px;
+  height:35px;
+  width:20%;
+  border-radius:10px;
+  background:#0a66c2;
+  border:none;
+  font-size:20px;
+  color:white;
+}
+.review-submit-button{
+  margin-top:40px;
+  width:30%;
+  margin-left:auto;
+}
+.review-submit-button>button{
+  width:100%;
+  height:40px;
+  border-radius:10px;
+  background: green;
+  font-size:20px;
+  border:none;
+  color:white;
+  
+  
+}
+
+@media only screen and (max-width:1180px){
+  .join-info{
+  width:98%;
+  padding:5px;
+}
+  .join-names, .join-credential-password, .join-financial{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  margin:auto;
+}
+.join-credential-password, .join-financial{
+  margin-top:20px;
+}
+.join-names>input, .join-credential-password>input, .join-financial>input{
+  width:100%;
+  
+}
+.join-names>input:last-child, .join-credential-password>input:last-child, .join-financial>input:last-child{
+  margin-left:0px;
+  margin-top:20px;
+}
+.join-credential-email, .join-address{
+  width:100%;
+}
+  .doc-upload{
+  width:100%;
+}
+  .relative{
+  display:flex;
+  flex-direction:column;
+  
+}
+.relative-name{
+  width:100%;
+}
+.relative-sub-group{
+  width:100%;
+  margin-top:10px;
+}
+.relative-country{
+  margin-left:0px;
+}
+
+.relatives-form>button{
+  width:40%;
+}
+.review-submit-button{
+  width:50%;
+  padding-bottom:20px;
+  
+}
+.review-submit-button>button{
+  width:100%;
+  
+}
+}
+
+
+
+
+.join-summary{
+  width:50%;
+  margin:auto;
+  background:#e7e9fe;
+  padding:70px;
+  margin-top:5px;
+
+  border-radius:10px;
+}
+.join-summary>h2{
+  text-align:center;
+   margin-block-start:0px;
+  margin-block-end:0px;
+  color:#0a66c2;
+}
+.review-account-type,.payment-label , .review-number-of-relatives , .summary-total{
+  padding-top:20px;
+}
+.review-account-type>label, .payment-label>label , .review-number-of-relatives>label, .summary-total>label{
+  font-size:20px;
+  padding-right:10px;
+}
+.review-account-type>input, .payment-label>input, .review-number-of-relatives>input, .summary-total>input{
+  font-size:20px;
+}
+.summary-edit{
+  display:block;
+  text-align:right;
+  margin-bottom:10px;
+
+}
+.join-summary fieldset{
+  border:2px inset #0a66c2;
+  border-radius:10px;
+  margin-top:20px;
+}
+.join-summary legend{
+  font-size:20px;
+  font-weight:bold;
+}
+.sponsor-information p{
+  font-size:20px;
+}
+.sponsor-information p>span{
+  padding-left:10px;
+  color:#0a66c2;
+  font-weight:bold;
+}
+.doc-table-review{
+  border-collapse:separate; 
+  border-spacing:15px;
+}
+.doc-table-review td{
+  padding: 0 15px;
+  border-left:1px solid grey;
+  font-size:20px;
+}
+.doc-table-review>tr>td:last-child{
+ color:#0a66c2;
+  font-weight:bold;
+}
+.review-number-of-relatives p{
+  font-size:20px;
+}
+.review-submit{
+  display:block;
+  width:30%;
+  margin-left:auto;
+  margin-top:20px;
+  height:40px;
+  border-radius:10px;
+  border:none;
+color:white;
+  background:green;
+  font-size:20px;
+}
+
+@media only screen and (max-width:1180px){
+  .join-summary{
+ width:98%;
+ padding: 5px;
+}
+  .review-submit{
+ 
+  width:50%;
+    margin-bottom:10px;
+  
+}
+}

@@ -1,0 +1,43 @@
+.step-wrapper{
+  margin-top:30px;
+  background-color:#f3f2f0;
+}
+.how{
+  font-size:50px;
+  padding-top:35px;
+  text-align:center;
+  color:#0a66c2;
+}
+.steps{
+  display: flex;
+  flex-directin:row;
+}
+.step1,.step2,.step3{
+  width:30%;
+  margin:auto;
+}
+.steps h2{
+  color:#0a66c2;
+  font-size:35px;
+  margin-block-start:0px;
+  text-align:center;
+}
+.steps p{
+  font-size:25px;
+}
+.stepIcon{
+  color:#0a66c2;
+  font-size:45px;
+  display:block;
+  margin:auto;
+}
+@media only screen and (max-width: 1180px){
+ .steps{
+  display: flex;
+  flex-direction:column;
+}
+  .step1,.step2,.step3{
+  width:70%;
+  margin:auto;
+}
+}

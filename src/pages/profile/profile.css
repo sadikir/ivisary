@@ -1,0 +1,113 @@
+.profile-wrapper{
+  width:40%;
+  margin:auto;
+  background:#e7e9fe;
+  border-radius:10px;
+  padding:70px;
+  position:relative;
+  overflow:hidden;
+}
+.profile-wrapper>h1{
+  text-align:center;
+}
+.profile-account-type>label{
+  font-size:20px;
+}
+.profile-account-type input{
+  font-size:20px;
+  padding:5px;
+}
+.profile-relatives-list{
+  position:relative;
+}
+.profile-relatives-list ol{
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+      padding-inline-start: 0px;
+}
+
+.profile-relatives-list p{
+  font-size:30px;
+  font-weight:700;
+}
+.profile-relatives-list li{
+  font-size:20px;
+  margin-top:5px;
+}
+.profile-billing-history> h2{
+   font-size:30px;
+  font-weight:700;
+}
+.profile-billing-history>p{
+  font-size:20px;
+}
+.profile-billing-history>p>span{
+  background:#0a66c2;
+  padding:5px;
+  color:white;
+  border-radius:10px;
+}
+.billing-wrapper{
+  display:flex;
+  background:green;
+  padding-top:5px;
+  padding-bottom:5px;
+  flex-direction:row;
+  border-radius:10px;
+}
+.billing-wrapper p{
+margin:auto;
+  color:white;
+  font-size:20px;
+}
+.billing-icon{
+  font-size:10px;
+  padding-left:5px;
+  padding-right:5px;
+}
+.profile-wrapper>span{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:red;
+  width:50px;
+  text-align:center;
+  color:white;
+  border-radius:5px;
+}
+.logout-wrapper>button{
+  
+  display:block;
+  margin-left:auto;
+  margin-top:20px;
+  margin-bottom: 20px;
+  color:white;
+  background:#0a66c2;
+  height:40px;
+  font-size:20px;
+  border-radius:10px;
+  border:none;
+  width:20%;
+}
+
+@media only screen and (max-width:1180px){
+  .logout-wrapper>button{
+  width:35%;
+}
+  .profile-wrapper{
+  width:100%;
+  padding:0px;
+  
+}
+  .profile-wrapper>h1{
+   padding-top:30px;
+  }
+}
+.profile-account-type, .profile-relatives-list, .profile-billing-history, .logout-wrapper{
+  width:95%;
+  margin:auto;
+}
+.profile-relatives-list li{
+    margin-left:25px;
+}
+

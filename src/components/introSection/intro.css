@@ -1,0 +1,130 @@
+.introSection{
+  display:flex;
+  
+  flex-direction:row;
+  width:100%;
+  background:#f3f2f0;
+}
+.box1{
+  width:50%;
+  
+  
+}
+.box2{
+  width:50%;
+  background:url("../images/introImg.jpg");
+  background-repeat:no-repeat;
+  background-size:auto 600px;
+}
+.box1>h1{
+  font-size:55px;
+  text-align:center;
+  margin-block-start:0px;
+  margin-block-end:0px;
+  margin-top:30px;
+  margin-bottom:20px;
+}
+  
+
+.box1>h2{
+  text-align:center;
+  font-size:40px;
+  margin-block-start:0px;
+  margin-block-end:0px;
+}
+.box1>p{
+  text-align:center;
+  font-size:40px;
+  color:white;
+  background:#0a66c2;
+  font-weight:1000;
+  display:block;
+  width:90%;
+  margin:auto;
+  margin-top:20px;
+  
+}
+.box1>button{
+  float:right;
+  margin-right:50px;
+  border:#0a66c2 solid 7px;
+  border-radius:15px;
+  width:200px;
+  padding:5px;
+  cursor:pointer;
+  font-size:30px;
+  margin-top:25px;
+}
+.box2{
+  border-radius:52% 10% 36% 46% / 65% 24% 62% 29%;
+  border-left:10px solid #0a66c2;
+  animation: morphing 10s infinite;
+  animation-direction:alternate;
+}
+@keyframes morphing {
+		0% {
+			border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%
+			
+		}
+		25% { 
+			border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%
+		}
+		50% {
+			border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%
+			
+		}
+		75% {
+			border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%		
+		}
+	}
+
+@media only screen and (max-width:1180px){
+  .introSection{
+  display:grid;
+  grid-template-rows:1f 1fr;
+  width:100%;
+  overflow:visible;
+
+}
+  .box1{
+  width:100%;
+  
+  
+}
+.box2{
+  margin-top:35px;
+  margin-bottom:35px;
+  width:100%;
+  height:400px;
+  
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+  .box1>h1{
+    font-size:30px;
+  }
+  .box1>h2{
+    font-size:25px;
+  }
+  .box1>p{
+    font-size:25px;
+    padding:10px;
+    background: #282a35;
+  }
+  .box1>button{
+  
+  float:none;
+  border:#0a66c2 solid 7px;
+  border-radius:15px;
+  width:70%;
+  display:block;
+  margin:auto;
+  
+  padding:5px;
+  cursor:pointer;
+  font-size:30px;
+  margin-top:25px;
+  }
+}

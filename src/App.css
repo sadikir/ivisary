@@ -2,5 +2,12 @@
   width:95%;
   margin:auto;
   margin-top:0px;
-  background:red;
+}
+
+@media only screen and (max-width:1180px){
+  .body{
+    width:100%;
+    overflow:hidden;
+    
+  }
 }
