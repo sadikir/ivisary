@@ -4,7 +4,7 @@ import {BsFillCircleFill} from "react-icons/bs"
 const Profile = () =>{
   return(
     <div className="profile-wrapper">
-      <span>Beta</span>
+      <span>BETA</span>
       <h1>Sadiki Rungo</h1>
       <div className="profile-account-type">
         <label>Account Type: <input disabled type="text" placeholder="Basic-free"/>
