@@ -27,7 +27,7 @@ const Header = ()=>{
         <li><Link to="/"><FaHome className="menuIcon"/>Home</Link></li>
         <li><Link to ="/about"><FaExclamationCircle className="menuIcon"/>About</Link></li>
         <li><Link to ="/about/#pricing"><ImPriceTag className="menuIcon"/> Pricing</Link></li>
-        <li><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
+        <li className="header-blog"><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
         <li><Link to="/login">Login</Link></li>
         <li><Link to="/about/#pricing">SignUp</Link></li>
        </ul>
@@ -43,7 +43,7 @@ const Header = ()=>{
             <li onClick={toggleMenu}><Link to="/"><FaHome className="menuIcon"/>Home</Link></li>
             <li onClick={toggleMenu}><Link to ="/about"><FaExclamationCircle className="menuIcon"/>About</Link></li>
             <li onClick={toggleMenu}><Link to ="/about/#pricing"><ImPriceTag className="menuIcon"/> Pricing</Link></li>
-            <li onClick={toggleMenu}><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
+           <li className="header-blog" onClick={toggleMenu}><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
             <li onClick={toggleMenu}><Link to="/login">Login</Link></li>
             <li onClick={toggleMenu}><Link to="/join">SignUp</Link></li>
           </ul>

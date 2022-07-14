@@ -18,6 +18,7 @@
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
+  align-items:flex-start;
   
 }
 .testimony-profile{
@@ -51,7 +52,5 @@
     margin-block-end: 0px;
 }
 @media only screen and (max-width:1180px){
-  .testimony:nth-child(4), .testimony:nth-child(5){
-    display:none;
-  }
+ 
 }

@@ -4,6 +4,7 @@
   display:flex;
   flex-direction:row;
   width:100%;
+  padding-bottom:15px;
 }
 .stat-box .stat1, .stat-box .stat2, .stat-box .stat3{
   width:33%;

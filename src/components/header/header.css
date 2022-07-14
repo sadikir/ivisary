@@ -8,7 +8,9 @@
   border-bottom:1px solid black;
   
 }
-
+.header-blog{
+  visibility:hidden;
+}
 .logoImg{
   width:150px;
   min-height: auto;

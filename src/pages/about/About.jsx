@@ -35,9 +35,9 @@ const About =()=>{
             </video>
           </div>
           <div className ="video-info">
-            <h1>We reunite families one at a time</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
+            <h1>#1 Platform for family Sponsorships</h1>
+            <p>The company started after our founders saw that immigrants were facing financial and legal challenges when sponsoring their relatives. iVISARY is seeking to solve these challenges by providing the required financial and legal support immigrants may need. We operate in Canada, USA, EU and Australia.</p>
+            <p>With membership based model we guarantee reliable and fast family sponsorhips. Trust us with your sponsoring needs. Why don't you make it a goal to sponsor one of your brothers or sisters and others today? Join us.</p>
           </div>
         </div>
       </div>
@@ -52,9 +52,9 @@ const About =()=>{
             <h2>Basic-Free</h2>
             <h1>$0</h1>
             <ul>
-              <li>Lotto Sponsorship</li>
-              <li>No fees</li>
-              <li>Not guarantee</li>
+              <li>Free Lottery Sponsorship</li>
+              <li>One relative only</li>
+              <li>Slow & Unguaranteed</li>
               
             </ul>
             <button>Subscribe</button>
@@ -64,9 +64,9 @@ const About =()=>{
             <h2>Fast Track</h2>
             <h1>$150<span>/Monthly</span></h1>
             <ul>
-              <li>Guaranteed</li>
-              <li>No hidden fees</li>
-              <li>Plus $8/additional person</li>
+              <li>Fast & Guaranteed</li>
+              <li>Up to 7 relatives</li>
+              <li>Plus $15/additional person</li>
               <li>Immediate processing</li>
               <li>Recommended</li>
             </ul>
@@ -86,7 +86,7 @@ const About =()=>{
       </div>
       {/* End Pricing component copied the whole code here to make scroll work*/}
       
-      <Team/>
+      
       <HomeContact/>
       
     </>

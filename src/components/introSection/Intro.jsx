@@ -4,11 +4,11 @@ const Intro=()=>{
   return(
     <div className="introSection">
       <div className="box1">
-        <h1>We help immigrants reunite with</h1>
-        <h2> their relatives</h2>
-        <h1>By offering reliable sponsorship </h1>
-        <h2></h2>
-        <p>We will sponsor your relatives</p>
+        <h1>We help immigrants to </h1>
+        <h2> sponsor their relatives</h2>
+        <h1>By offering reliable financial </h1>
+        <h2>and legal support</h2>
+        <p>#1 Platform for family sponsorship</p>
         <button>Join us</button>
 
         

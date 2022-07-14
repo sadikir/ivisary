@@ -17,6 +17,56 @@
   font-size:20px;
   padding:5px;
 }
+.profile-user-form{
+  border: 2px solid #0a66c2;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border-top: 1px solid #0a66c2 ;
+}
+.profile-info-edit{
+  position:absolute;
+  right:10px;
+  top:10px;
+}
+.profile-user-form input{
+  margin-top:10px;
+  height:40px;
+  font-size:20px;
+  padding-left:10px;
+}
+.profile-name-update{
+  margin-top:20px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+.profile-name-update input{
+  width:45%;
+    box-sizing:border-box;
+  
+}
+.profile-password-update{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+.profile-password-update input{
+  width:45%;
+  box-sizing:border-box;
+}
+.profile-update-button{
+  width:35%;
+  margin-left:auto;
+  margin-top:5px;
+  height:40px;
+  background:#0a66c2;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:20px;
+}
 .profile-relatives-list{
   position:relative;
 }
@@ -102,12 +152,37 @@ margin:auto;
   .profile-wrapper>h1{
    padding-top:30px;
   }
-}
 .profile-account-type, .profile-relatives-list, .profile-billing-history, .logout-wrapper{
   width:95%;
   margin:auto;
 }
 .profile-relatives-list li{
     margin-left:25px;
+}
+.profile-name-update{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.profile-name-update input{
+  width:100%;
+  box-sizing:border-box;
+  
+}
+.profile-password-update{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.profile-password-update input{
+  width:100%;
+  box-sizing:border-box;
+}
+.profile-update-button{
+  width:50%;
+  margin-top:10px;
+  
+}
 }
 

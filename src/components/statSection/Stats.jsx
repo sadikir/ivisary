@@ -1,7 +1,7 @@
 import "./statSection.css"
 import {RiMoneyDollarCircleLine} from "react-icons/ri"
 import {BiStats} from "react-icons/bi"
-import {IoIosPeople} from "react-icons/io"
+import {FaHandshake} from "react-icons/fa"
 
 const Stats = ()=>{
   return (
@@ -17,15 +17,15 @@ const Stats = ()=>{
         <BiStats className="statIcon"/>
         <h4>There are</h4>
         <h1>40million<span className="plus">+</span></h1>
-        <h4>immigrants in</h4>
-        <h4>USA only</h4>
+        <h4>USA immigrants</h4>
+        <h4></h4>
       </div>
       <div className="stats stat3">
-        <IoIosPeople className="statIcon"/>
-        <h4>There are</h4>
-        <h1>250Million<span className="plus">+</span></h1>
-        <h4>immigrants</h4>
-        <h4>Worldwide.</h4>
+        <FaHandshake className="statIcon"/>
+        <h4>Guaranteed</h4>
+        <h1>99%</h1>
+        <h4>Customer</h4>
+        <h4>Satisfaction.</h4>
       </div>
     </div>
   )

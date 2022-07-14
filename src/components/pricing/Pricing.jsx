@@ -1,4 +1,5 @@
 import "./pricing.css"
+import {Link} from "react-router-dom"
 
 
 
@@ -12,25 +13,29 @@ const Pricing = ()=>{
             <h2>Basic-Free</h2>
             <h1>$0</h1>
             <ul>
-              <li>Lotto Sponsorship</li>
-              <li>No fees</li>
-              <li>Not guarantee</li>
+              <li>Free Lottery sponsorship</li>
+              <li>One relative only</li>
+              <li>Slow & Unguaranteed</li>
               
             </ul>
-            <button>Subscribe</button>
+            <Link to="/join/:price1">
+              <button>Subscribe</button>
+            </Link>
           </div>
           <div className="prices price2">
             <span className="price-recomend">Popular</span>
             <h2>Fast Track</h2>
             <h1>$150<span>/Monthly</span></h1>
             <ul>
-              <li>Guaranteed</li>
-              <li>No hidden fees</li>
-              <li>Plus $8/additional person</li>
+              <li>Fast & Guaranteed</li>
+              <li>Up to 7 relatives</li>
+              <li>Plus $15/additional person</li>
               <li>Immediate processing</li>
               <li>Recommended</li>
             </ul>
-            <button>Subscribe</button>
+            <Link to="/join/:price2">
+              <button>Subscribe</button>
+            </Link>
           </div>
           <div className="prices price3">
             <h2>Immigration Loans</h2>

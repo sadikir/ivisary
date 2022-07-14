@@ -1,7 +1,12 @@
 import "./profile.css"
 import {BsFillCircleFill} from "react-icons/bs"
+import {FiEdit} from "react-icons/fi"
+import {useEffect} from "react"
 
 const Profile = () =>{
+  useEffect(()=>{
+    window.scrollTo({top:0,left:0, behavior: "smooth"});
+  },[])
   return(
     <div className="profile-wrapper">
       <span>BETA</span>
@@ -9,6 +14,25 @@ const Profile = () =>{
       <div className="profile-account-type">
         <label>Account Type: <input disabled type="text" placeholder="Basic-free"/>
         </label>
+      </div>
+      <div className="profile-user-info">
+        <h2>Update Your information</h2>
+        
+        <form className="profile-user-form">
+          <span className="profile-info-edit"><FiEdit/>Edit</span>
+          <div className="profile-name-update">
+            <input type="text" placeholder="FirstName"/>
+            <input type="text" placeholder="LaststName"/>
+          </div>
+          <input type="text" placeholder="Phone Number"/>
+          <input type="text" placeholder="Email address"/>
+          <input type="text" placeholder="Address"/>
+          <div className="profile-password-update">
+            <input type="password" placeholder="Old passoword"/>
+            <input type ="password" placeholder="New password"/>
+          </div>
+          <button className="profile-update-button">Update</button>
+        </form>
       </div>
       <div className="profile-relatives-list">
         <ol>

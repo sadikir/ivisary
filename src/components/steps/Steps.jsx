@@ -10,17 +10,17 @@ const Steps=()=>{
       <div className="step1">
         <RiNumber1 className="stepIcon"/>
         <h2>Join us</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</p>
+        <p>Many are accepting our call to action. Sign up </p>
       </div>
       <div className="step2">
         <RiNumber2 className="stepIcon"/>
         <h2>Sponsor</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</p>
+        <p>We will handle all the financial and legal burden for you</p>
       </div>
       <div className="step3">
         <RiNumber3 className="stepIcon"/>
         <h2>Reunite</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</p>
+        <p>Reunite and watch your family transform to new life.</p>
       </div>
      </div>
     </div>

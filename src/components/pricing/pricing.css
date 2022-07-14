@@ -1,5 +1,6 @@
 .pricing-wrapper{
   padding-top:50px;
+  padding-bottom:50px;
 }
 .pricing-wrapper>h1{
   text-align:center;
@@ -41,13 +42,13 @@
 .prices>h1>span{
   font-size:15px;
 }
-
+.prices>ul{
+  padding-inline-start: 5px;
+}
 .prices>ul>li{
   display:block;
-  margin-left:0px;
   font-size:20px;
   color:black;
-  vertical-align:center;
   
 }
 .price2{
@@ -59,9 +60,10 @@ background: linear-gradient(90deg, rgba(135,190,244,1) 0%, rgba(207,228,250,1) 4
     font-size:40px;
     
 	     }
-.prices>button{
+.prices>a>button, .prices>button{
   float:right;
   font-size:20px;
+  padding:0px;
   margin-right:10px;
   margin-bottom:10px;
   height:40px;
@@ -69,7 +71,8 @@ background: linear-gradient(90deg, rgba(135,190,244,1) 0%, rgba(207,228,250,1) 4
   border-radius:10px;
   color:white;
   background:#0a66c2;
-  width:50%;
+  width:55%;
+  cursor:pointer;
 }
 .price-recomend{
   float:right;
@@ -93,7 +96,5 @@ background: linear-gradient(90deg, rgba(135,190,244,1) 0%, rgba(207,228,250,1) 4
   width:80%;
   margin-top:20px;
 }
-  .prices>ul>li{
-  margin-left:10%;
-}
+
 }

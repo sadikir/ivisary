@@ -6,12 +6,15 @@ import Steps from "../../components/steps/Steps"
 import Testimony from "../../components/testimonials/Testimony"
 import Serving from "../../components/serving/Serving"
 import Team from "../../components/team/Team"
-import HomeBlog from "../../components/homeBlog/HomeBlog"
 import HomeContact from "../../components/homeContact/HomeContact"
 import Pricing from "../../components/pricing/Pricing"
+import {useEffect} from "react";
 
 
 const Home=()=>{
+  useEffect(()=>{
+    window.scrollTo({top:0,left:0, behavior: "smooth"})
+  },[])
   return(
     <>
       <Intro/>
@@ -21,8 +24,8 @@ const Home=()=>{
       <Testimony/>
       <Serving/>
       <Pricing/>
-      <Team/>
-      <HomeBlog/>
+     
+     
       <HomeContact/>
   
     </>
