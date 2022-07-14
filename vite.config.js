@@ -10,7 +10,7 @@ const getConfig = ({ command, mode }) => ({
   },
   plugins: [
     react(),
-    legacy(),
+    //legacy(),
   ],
 })
 
