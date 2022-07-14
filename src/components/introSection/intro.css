@@ -1,6 +1,6 @@
 .introSection{
   display:flex;
-  
+  margin-top:0px;
   flex-direction:row;
   width:100%;
   background:#f3f2f0;
