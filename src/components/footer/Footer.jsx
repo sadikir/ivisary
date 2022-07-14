@@ -1,4 +1,4 @@
-import "./footer-style.css"
+import "./footer.css"
 import {BsFacebook,BsLinkedin,BsTwitter} from "react-icons/bs"
 
 const Footer =()=>{
