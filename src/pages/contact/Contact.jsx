@@ -16,7 +16,7 @@ const Contact = () =>{
         <p>Edmonton, AB, T5L5C4</p>
         <p>Canada</p>
         <br/>
-        <p>help@ivisary.com</p>
+        <p>support@ivisary.com</p>
         <br/>
         <p>Call or text <span>+15879743028</span></p>
       </div>
