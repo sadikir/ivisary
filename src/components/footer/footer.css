@@ -1,5 +1,4 @@
-@media only screen and (max-width:6000px){
-  .footer-wrapper{
+.footer-wrapper{
   width:100%;
   margin-top:30px;
   background:#fff;
@@ -85,7 +84,6 @@
   text-align:center;
   background:#d4e6fe;
   color:#0a66c2;
-}
 }
 @media only screen and (max-width:1180px){
   .footer-group{
