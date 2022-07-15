@@ -3,7 +3,7 @@ import {BsFacebook,BsLinkedin,BsTwitter} from "react-icons/bs"
 
 const Footer =()=>{
   return(
-    <div className="footer-wrapper" style={{backgroundColor:"red"}}>
+    <div className="footer-wrapper" >
       <div className="footer-group">
         <div className="footer-section footer-logo-wrapper">
           <img src="images/logo.jpg"/>
