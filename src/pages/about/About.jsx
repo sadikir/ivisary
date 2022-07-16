@@ -5,7 +5,7 @@ import AboutVideo from "../../../public/videos/video.mp4"
 import Team from "../../components/team/Team"
 import HomeContact from "../../components/homeContact/HomeContact"
 import Steps from "../../components/steps/Steps"
-import {useLocation} from "react-router-dom"
+import {useLocation, Link} from "react-router-dom"
 import {useEffect} from "react";
 
 
@@ -52,17 +52,19 @@ const About =()=>{
             <h2>Basic-Free</h2>
             <h1>$0</h1>
             <ul>
-              <li>Free Lottery Sponsorship</li>
+              <li>Free Lottery sponsorship</li>
               <li>One relative only</li>
               <li>Slow & Unguaranteed</li>
               
             </ul>
-            <button>Subscribe</button>
+            <Link to="/join/:price1">
+              <button>Subscribe</button>
+            </Link>
           </div>
           <div className="prices price2">
             <span className="price-recomend">Popular</span>
             <h2>Fast Track</h2>
-            <h1>$150<span>/Monthly</span></h1>
+            <h1>$170<span>/Monthly</span></h1>
             <ul>
               <li>Fast & Guaranteed</li>
               <li>Up to 7 relatives</li>
@@ -70,7 +72,9 @@ const About =()=>{
               <li>Immediate processing</li>
               <li>Recommended</li>
             </ul>
-            <button>Subscribe</button>
+            <Link to="/join/:price2">
+              <button>Subscribe</button>
+            </Link>
           </div>
           <div className="prices price3">
             <h2>Immigration Loans</h2>
@@ -80,7 +84,7 @@ const About =()=>{
               <li>5 year term max</li>
               <li>Low fixed rates</li>
             </ul>
-            <button>Coming Soon!</button>
+            <button>Coming soon!</button>
           </div>
         </div>
       </div>

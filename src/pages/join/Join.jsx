@@ -37,7 +37,7 @@ const Join =()=>{
   const [age,setAge]=useState(0)
   const [country, setCountry]= useState("")
   const [relativeName, setRelativeName]= useState("")
-   const [validateForm, setValidateForm]=useState(false)
+   const validateForm= useRef()
    const [toggleForm, setToggleForm]=useState(false);
 
 
@@ -51,22 +51,18 @@ const Join =()=>{
 
  
   //chack if form is filled out and toggle the form with the preview.
-  const validForm=()=>{
-    if(firstName&&lastName){
-      setValidateForm(true)
-    }else{
-      setValidateForm(false)
-    }
-  }
- 
-  const togglePreview=()=>{
-    if (toggleForm){
-      if(validateForm){
-        setToggleForm(false)
+
+  const togglePreview=(e)=>{
+  e.preventDefault()
+    validateForm.current.checkValidity()
+    if(firstName!=="" && lastName!=="" &&email!== ""&&passWord!=="" &&passAgain!==""&& address!==""&&income!==""&&employer!==""&&frontID!==null&&backID!==null&&selfie!==null&incomeDoc!==null){
+      if(toggleForm===false){
+        setToggleForm(true)
       }else{
-      setToggleForm(true)
+        setToggleForm(false)
+        
+      }
     }
-  }
   }
   // scroll sections into view.
   const basicToggle=(e)=>{
@@ -113,7 +109,7 @@ const Join =()=>{
       setRelatives([...relatives, {name:relativeName,country:country,age:age}])
       setRelativeName("")
       setCountry("")
-      setAge(0)
+      
     }
   }
  
@@ -123,6 +119,7 @@ const Join =()=>{
       
       const frontIdData= new FormData()
      frontIDName.current=Date.now()+frontID.name;
+     
       frontIdData.append("name", frontIDName.current)
       frontIdData.append("file",frontID)
       // code for console logging form data values
@@ -158,7 +155,7 @@ const Join =()=>{
     <>
       <div className="join-wrapper">
         <h1>Join Us</h1>
-        <div className={"join-info "+(toggleForm?"hide-forms":"display-forms")}>
+        <form className={"join-info "+(toggleForm?"hide-forms":"display-forms")} ref={validateForm}>
           <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
           <div className="account-type-wrapper">
             <label>Subscription Type:</label>
@@ -168,25 +165,25 @@ const Join =()=>{
             <fieldset>
               <legend >Basic Infomation</legend>
               <div className="join-names">
-                <input type="text" value ={firstName} placeholder="Your First Name" onChange={(e)=>setFirstName(e.target.value)}/>
-                <input type="text" placeholder="Last Name" onChange={(e)=>setLastName(e.target.value)}/>
+                <input type="text" value ={firstName} placeholder="Your First Name" onChange={(e)=>setFirstName(e.target.value)} required/>
+                <input type="text"value={lastName} placeholder="Last Name" onChange={(e)=>setLastName(e.target.value)} required/>
               </div>
               <div className="join-credential-email">
-                <input type="email" placeholder="Email e.g 'Example@website.com'" onChange={(e)=>setEmail(e.target.value)}/>
+                <input type="email" placeholder="Email e.g 'Example@website.com'" onChange={(e)=>setEmail(e.target.value)} required/>
               </div>
               <div className="join-phone">
-                <input type="tel" placeholder="Phone number" onChange={(e)=>setPhone(e.target.value)}/>
+                <input type="tel" placeholder="Phone number" onChange={(e)=>setPhone(e.target.value)} required/>
               </div>
               <div className="join-credential-password">
-                <input type="password" placeholder="Password" onChange={(e)=>setPassWord(e.target.value)}/>
-                <input type ="password" placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)}/>
+                <input type="password" placeholder="Password" onChange={(e)=>setPassWord(e.target.value)} required/>
+                <input type ="password" placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)} required/>
               </div>
               <div className="join-address">
-                <input type="text" placeholder="Address" onChange={(e)=>setAddress(e.target.value)}/>
+                <input type="text" placeholder="Address" onChange={(e)=>setAddress(e.target.value)} required/>
               </div>
               <div className="join-financial">
-               <input type="text" placeholder="Yearly Income" onChange={(e)=>setIncome(e.target.value)}/>
-               <input type= "text" placeholder= "Employer Name" onChange={(e)=>setEmployer(e.target.value)}/>
+               <input type="text" placeholder="Yearly Income" onChange={(e)=>setIncome(e.target.value)} required/>
+               <input type= "text" placeholder= "Employer Name" onChange={(e)=>setEmployer(e.target.value)} required/>
               </div>
               
             </fieldset>
@@ -200,21 +197,21 @@ const Join =()=>{
                 <li>Driver's License</li>
                 <li>Passport</li>
               </ul>
-              <form className="doc-upload">
+              <div className="doc-upload">
                 <label className={"doc-label "+ (frontID?"upload-lebel ":"")}>
-                  <input type="file" onChange={(e)=>{setFrontID(e.target.files[0])}}/>
+                  <input type="file" onChange={(e)=>{setFrontID(e.target.files[0])}} required/>
                   <GrDocumentUpload/>
                   
                   <span>{frontID?"Upload done!":"Upload Front"}</span>
                 
                 </label>
                 <label className={"doc-label "+ (backID?"upload-lebel ":"")}>
-                  <input type="file" onChange={(e)=>setBackID(e.target.files[0])} />
+                  <input type="file" onChange={(e)=>setBackID(e.target.files[0])} required/>
                   <GrDocumentUpload/>
                   <span>{backID?"Upload done":"Upload Back"}</span>
                 </label>
-              </form>
-              <form>
+              </div>
+              <div>
                 <h4>Take a selfie now</h4>
                 <p>We would like to see if your the right person in the document you uploaded above. Please take a selfie of yourself.</p>
                 <label className={"doc-label "+ (selfie?"upload-lebel ":"")}>
@@ -222,7 +219,7 @@ const Join =()=>{
                   <BsFillCameraFill/>
                   <span>{selfie?"Upload done!":"Camera"}</span>
                 </label>
-              </form>
+              </div>
               
             </fieldset>
           </div>
@@ -235,13 +232,13 @@ const Join =()=>{
                 <li>Recent Paystub</li>
                 <li>Employment letter</li>
               </ul>
-              <form>
+              <div>
                 <label className={"doc-label "+ (incomeDoc?"upload-lebel ":"")}>
-                  <input type="file" onChange={(e)=>setIncomeDoc(e.target.files[0])}/>
+                  <input type="file" onChange={(e)=>setIncomeDoc(e.target.files[0])} required/>
                   <GrDocumentUpload/>
                   <span>{incomeDoc?"Upload done!":"Upload here"}</span>
                 </label>
-              </form>
+              </div>
             </fieldset>
           </div>
           <div className="relative-wrapper" >
@@ -252,14 +249,14 @@ const Join =()=>{
               <div className="relative-list">
                 {relatives.map(person=><Relative key={Math.random()} relative={person}/>)}
               </div>
-              <form className="relatives-form">
+              <div className="relatives-form">
                <div className="relative">
-                <input type="text" value={relativeName} onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative" required/>
+                <input type="text" value={relativeName} onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative"/>
                 <div className="relative-sub-group">
-                <input type="text" value={country} onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country" required/>
+                <input type="text" value={country} onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country"/>
                   {/*<input type="date" placeholder="DOB" onChange={(e)=>setAge(e.target.value)} className="relative-age" placeholder="Age" required/>*/
                   }
-                  <select name="ages" className="relative-age" onChange={(e)=>setAge(e.target.value)}>
+                  <select name="ages" className="relative-age" onChange={(e)=>setAge(e.target.value)} >
                     <option value="" disabled selected>Age</option>
                     <Options value="0-2" name="0-2"/>
                     <Options value="2-12" name="2-12"/>
@@ -270,13 +267,13 @@ const Join =()=>{
                   </div>
                </div>
                 <button onClick={(e)=>addRelative(e)}>Add <span style={{fontSize:"25px"}}>+</span></button>
-              </form>
+              </div>
             </fieldset>
           </div>
           <div className="review-submit-button">
-            <button onClick={()=>{validForm(); togglePreview(); joinToggle()}}>Review/Submit</button>
+            <button type="submit" onClick={(e)=>{togglePreview(e); joinToggle()}}>Review/Submit</button>
           </div>
-        </div>
+        </form>
 
 
 
@@ -285,18 +282,18 @@ const Join =()=>{
           <h2>Review and verify information</h2>
           <div className="review-account-type">
             <label>Subscription Type:</label>
-            <input disabled type="text" value="Basic-Free"/>
+            <input disabled type="text" value={" "+accountType}/>
           </div>
           <fieldset className="sponsor-information">
             <span className="summary-edit" onClick={()=>{togglePreview(); basicToggle()}}><AiFillEdit/>edit</span>
             <legend>About you</legend>
             <div>
-              <p>First Name:<span>Sadiki</span></p>
-              <p>Last Name:<span>Rungo</span></p>
+              <p>First Name:<span>{firstName}</span></p>
+              <p>Last Name:<span>{lastName}</span></p>
             </div>
-            <p>Email:<span>example@gmail.com</span></p>
-            <p>Phone Number: <span>0000000000</span></p>
-            <p>Address: <span>12214 119 Avenue Nw Edmonton Ab, Ca</span></p>
+            <p>Email:<span>{email}</span></p>
+            <p>Phone Number: <span>{phone}</span></p>
+            <p>Address: <span>{address}</span></p>
           </fieldset>
           <fieldset>
             <span className="summary-edit" onClick={()=>{togglePreview();identityToggle()}}><AiFillEdit/>edit</span>
@@ -310,16 +307,20 @@ const Join =()=>{
               </thead>
               <tbody>
                 <tr>
-                <td>ID document:</td>
-                <td>Driver.pdf</td>
+                <td>Front of ID:</td>
+                <td>{frontID?frontID.name:null}</td>
+              </tr>
+                <tr>
+                <td>Back of ID:</td>
+                <td>{backID?backID.name:null}</td>
               </tr>
               <tr>
                 <td>Photo:</td>
-                <td>selfie.jpgf</td>
+                <td>{selfie?selfie.name:null}</td>
               </tr>
               <tr>
                 <td>Income file:</td>
-                <td>Income.pdf</td>
+                <td>{incomeDoc?incomeDoc.name:null }</td>
               </tr>
               </tbody>
               

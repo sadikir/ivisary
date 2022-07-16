@@ -25,7 +25,7 @@ const Pricing = ()=>{
           <div className="prices price2">
             <span className="price-recomend">Popular</span>
             <h2>Fast Track</h2>
-            <h1>$150<span>/Monthly</span></h1>
+            <h1>$170<span>/Monthly</span></h1>
             <ul>
               <li>Fast & Guaranteed</li>
               <li>Up to 7 relatives</li>
