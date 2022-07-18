@@ -7,6 +7,7 @@ import {useState, useEffect, useRef} from "react";
 import {useLocation} from "react-router-dom"
 import Relative from "./Relatives"
 import Options from "./Options"
+import axios from "axios"
 
 const Join =()=>{
   
@@ -29,7 +30,7 @@ const Join =()=>{
   const backIDName = useRef(null)
   const selfieName = useRef(null)
   const incomeDocName = useRef(null)
-  const [relatives, setRelatives]= useState([{name:"",country:"",age:undefined}])
+  const [relatives, setRelatives]= useState([])
   const basicRef=useRef()
   const identityRef=useRef()
   const incomeRef=useRef()
@@ -39,8 +40,39 @@ const Join =()=>{
   const [relativeName, setRelativeName]= useState("")
    const validateForm= useRef()
    const [toggleForm, setToggleForm]=useState(false);
+  const checkPassAgain= useRef()
+  const checkPass=useRef()
+  const [passMatch, setPassMatch] = useState(-1)
+  const [passCriteria, setPassCriteria]= useState(false)
+  const [error, setError] = useState(false);
+
+//check if passwords match
+  useEffect(()=>{
+    if(passWord!=="" && document.activeElement===checkPassAgain.current){
+      if(passWord===passAgain){
+        setPassMatch(1)
+      }else{
+        setPassMatch(0)
+      }
+    }else{
+      setPassMatch(-1)
+    }
+    if(document.activeElement===checkPass.current && passAgain!==""){
+      setPassAgain("")
+    }
+    if(document.activeElement===checkPass.current){
+      if(passWord.length<8){
+        setPassCriteria(true)
+      }else{
+        setPassCriteria(false)
+      }
+    }else{
+      setPassCriteria(false)
+    }
+  },[passWord,passAgain])
 
 
+  //scroll window to top when visited
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
@@ -50,12 +82,12 @@ const Join =()=>{
   
 
  
-  //chack if form is filled out and toggle the form with the preview.
+  //check if form is filled out and toggle the form with the preview.
 
   const togglePreview=(e)=>{
   e.preventDefault()
-    validateForm.current.checkValidity()
-    if(firstName!=="" && lastName!=="" &&email!== ""&&passWord!=="" &&passAgain!==""&& address!==""&&income!==""&&employer!==""&&frontID!==null&&backID!==null&&selfie!==null&incomeDoc!==null){
+    
+    if(firstName!=="" && lastName!=="" &&email!== ""&&passWord.length>=8 &&passWord===passAgain&& address!==""&&income!==""&&employer!==""&&frontID!==null&&backID!==null&&selfie!==null&incomeDoc!==null){
       if(toggleForm===false){
         setToggleForm(true)
       }else{
@@ -117,39 +149,78 @@ const Join =()=>{
   useEffect(()=>{
     if(frontID){
       
-      const frontIdData= new FormData()
+      window.frontIdData= new FormData()
      frontIDName.current=Date.now()+frontID.name;
-     
       frontIdData.append("name", frontIDName.current)
       frontIdData.append("file",frontID)
       // code for console logging form data values
-      // for (var key of frontIdData.entries()) {
-      //   console.log(key[0] + ', ' + key[1]);
-      // }
+      for (var key of frontIdData.entries()) {
+        console.log(key[0] + ', ' + key[1]);
+      }
     }
     if(backID){
-      const backIdData= new FormData()
+      window.backIdData= new FormData()
       backIDName.current=Date.now()+backID.name;
       backIdData.append("name", backIDName.current)
       backIdData.append("file",backID)
       
     }
     if(selfie){
-      const selfieData= new FormData()
+      window.selfieData= new FormData()
       selfieName.current=Date.now()+selfie.name;
       selfieData.append("name", selfieName.current)
       selfieData.append("file",selfie)
       
     }
     if(incomeDoc){
-      const incomeData= new FormData()
+      window.incomeData= new FormData()
       incomeDocName.current=Date.now()+incomeDoc.name;
       incomeData.append("name", incomeDocName.current)
       incomeData.append("file",incomeDoc)
       
     }
   },[frontID,backID,selfie,incomeDoc])
+
+
+  //Submitting form and creating a user
+ 
+
+  const handleSubmit = async (e) => {
+    
+    setError(false);
   
+    try {
+      await axios.post("https://api.sadikirungo.repl.co/api/upload", frontIdData)
+      .then(response=>{
+        return  axios.post("https://api.sadikirungo.repl.co/api/upload", backIdData);
+      })
+      .then(response=>{
+        return  axios.post("https://api.sadikirungo.repl.co/api/upload", selfieData);
+      })
+      .then(response=>{
+        return  axios.post("https://api.sadikirungo.repl.co/api/upload", incomeData);
+      })
+      
+      
+      
+      const res = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        passWord,
+        accountType,
+        employer,
+        income,
+        relatives
+      });
+      // res.data && window.location.replace("/login");
+    } catch (err) {
+      setError(true);
+      console.log(err)
+    }
+  };
   return (
     
     <>
@@ -159,7 +230,7 @@ const Join =()=>{
           <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
           <div className="account-type-wrapper">
             <label>Subscription Type:</label>
-            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic-Free":path===":price2"?"Fast Tract - $150":undefined}/>
+            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic-Free":path===":price2"?"Fast Tract - $170":undefined}/>
           </div>
           <div className="basic-info-wrapper" ref={basicRef}>
             <fieldset>
@@ -174,9 +245,13 @@ const Join =()=>{
               <div className="join-phone">
                 <input type="tel" placeholder="Phone number" onChange={(e)=>setPhone(e.target.value)} required/>
               </div>
+              <div className={"password-criteria "+(passCriteria?"display-password-creteria":"hide-password-criteria")}>
+                <p>Password should be 8 characters long. Mix numbers, alphabetical letters and special character like /?.&$</p>
+              </div>
               <div className="join-credential-password">
-                <input type="password" placeholder="Password" onChange={(e)=>setPassWord(e.target.value)} required/>
-                <input type ="password" placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)} required/>
+                <input ref = {checkPass} type="password" placeholder="Password" onChange={(e)=>setPassWord(e.target.value)} required/>
+                <input ref = {checkPassAgain} type ="password" value={passAgain} placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)} required/>
+            <span className={"password-match "+(passMatch===1?"green-pass-warning":passMatch===0?"red-pass-warning":null)}>{passMatch===1?"passwords match":passMatch===0?"password don't match":null}</span>
               </div>
               <div className="join-address">
                 <input type="text" placeholder="Address" onChange={(e)=>setAddress(e.target.value)} required/>
@@ -285,7 +360,7 @@ const Join =()=>{
             <input disabled type="text" value={" "+accountType}/>
           </div>
           <fieldset className="sponsor-information">
-            <span className="summary-edit" onClick={()=>{togglePreview(); basicToggle()}}><AiFillEdit/>edit</span>
+            <span className="summary-edit" onClick={(e)=>{togglePreview(e); basicToggle()}}><AiFillEdit/>edit</span>
             <legend>About you</legend>
             <div>
               <p>First Name:<span>{firstName}</span></p>
@@ -296,7 +371,7 @@ const Join =()=>{
             <p>Address: <span>{address}</span></p>
           </fieldset>
           <fieldset>
-            <span className="summary-edit" onClick={()=>{togglePreview();identityToggle()}}><AiFillEdit/>edit</span>
+            <span className="summary-edit" onClick={(e)=>{togglePreview(e);identityToggle()}}><AiFillEdit/>edit</span>
             <legend>Identity Documents</legend>
             <table className="doc-table-review">
               <thead>
@@ -327,23 +402,23 @@ const Join =()=>{
             </table>
           </fieldset>
           <fieldset>
-            <span className="summary-edit" onClick={()=>{togglePreview(); incomeToggle()}}><AiFillEdit/>edit</span>
+            <span className="summary-edit" onClick={(e)=>{togglePreview(e); incomeToggle()}}><AiFillEdit/>edit</span>
             <legend>Payment</legend>
             <div className="payment-label">
               <label>Base pay:</label>
-              <input disabled type="text" value="$150"/>
+              <input disabled type="text" value="$170"/>
             </div>
             <div className="review-number-of-relatives">
-              <p>There is an additional $8 per additional relative. The first relative only is charged only the base pay.</p>
-              <label>Relatives - <span>2:</span></label>
+              <p>There is an additional $15 per additional relative. The first relative is charged only the base pay.</p>
+              <label>Relatives - <span>{relatives.length}:</span></label>
               <input disabled type="text" value="+$15 each"/>
             </div>
             <div className="summary-total">
               <label>Total Payment:</label>
-              <input disabled type="text" value="$170/month"/>
+              <input disabled type="text" value={"$"+(((relatives.length-1)*15)+170)+"/month"}/>
             </div>
           </fieldset>
-          <button className="review-submit">Submit & Pay</button>
+          <button onClick={(e)=>handleSubmit(e)} className="review-submit">Submit & Pay</button>
         </div>
          
       </div>
