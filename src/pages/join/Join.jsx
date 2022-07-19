@@ -154,9 +154,9 @@ const Join =()=>{
       frontIdData.append("name", frontIDName.current)
       frontIdData.append("file",frontID)
       // code for console logging form data values
-      for (var key of frontIdData.entries()) {
-        console.log(key[0] + ', ' + key[1]);
-      }
+      // for (var key of frontIdData.entries()) {
+      //   console.log(key[0] + ', ' + key[1]);
+      // }
     }
     if(backID){
       window.backIdData= new FormData()
@@ -202,7 +202,10 @@ const Join =()=>{
       })
       
       
-      
+      // const frontIdDocument=frontIDName.current
+      // const backIdDocument=backIDName.current
+      // const selfieDocument=selfieName.current
+      // const incomeDocument=incomeDocName.current
       const res = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
         firstName,
         lastName,
@@ -213,9 +216,17 @@ const Join =()=>{
         accountType,
         employer,
         income,
-        relatives
+        relatives,
+        // frontIdDocument,
+        // backIdDocument,
+        // selfieDocument,
+        // incomeDocument
+        frontIdDocument:frontIDName.current,
+        backIdDocument:backIDName.current,
+        selfieDocument:selfieName.current,
+        incomeDocument:incomeDocName.current
       });
-      // res.data && window.location.replace("/login");
+      res.data && window.location.replace("/login");
     } catch (err) {
       setError(true);
       console.log(err)

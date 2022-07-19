@@ -21,7 +21,7 @@ const Header = ()=>{
   
   return (
     <div className="header">
-    <img className = "logoImg" src="/images/logo.jpg" />
+    <img className = "logoImg" src="/images/logo.png" />
       <div className="menu desktop-menu">
        <ul className="desktop-menu-list">
         <li><Link to="/"><FaHome className="menuIcon"/>Home</Link></li>
@@ -45,7 +45,7 @@ const Header = ()=>{
             <li onClick={toggleMenu}><Link to ="/about/#pricing"><ImPriceTag className="menuIcon"/> Pricing</Link></li>
            <li className="header-blog" onClick={toggleMenu}><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
             <li onClick={toggleMenu}><Link to="/login">Login</Link></li>
-            <li onClick={toggleMenu}><Link to="/join">SignUp</Link></li>
+            <li onClick={toggleMenu}><Link to="/about/#pricing">SignUp</Link></li>
           </ul>
         </div>
       </div>

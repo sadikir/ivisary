@@ -11,7 +11,6 @@ import {useEffect} from "react";
 
 const About =()=>{
   const location = useLocation();
-  console.log(location)
   useEffect(()=> {
             if (location.hash==="#pricing") {
                 let elem = document.getElementById("pricing")
@@ -84,7 +83,7 @@ const About =()=>{
               <li>5 year term max</li>
               <li>Low fixed rates</li>
             </ul>
-            <button>Coming soon!</button>
+            <button type="button" style={{cursor:"not-allowed"}}disabled>Coming soon!</button>
           </div>
         </div>
       </div>

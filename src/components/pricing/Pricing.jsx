@@ -45,7 +45,7 @@ const Pricing = ()=>{
               <li>5 year term max</li>
               <li>Low fixed rates</li>
             </ul>
-            <button>Coming soon!</button>
+            <button type="button" style={{cursor:"not-allowed"}}disabled>Coming soon!</button>
           </div>
         </div>
       </div>
