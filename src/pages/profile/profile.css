@@ -32,6 +32,7 @@
 }
 .profile-user-form input{
   margin-top:10px;
+  border-radius:5px;
   height:40px;
   font-size:20px;
   padding-left:10px;
@@ -47,6 +48,11 @@
     box-sizing:border-box;
   
 }
+.email-verify{
+  color:green;
+  padding:5px;
+}
+
 .profile-password-update{
   display:flex;
   flex-direction:row;
@@ -125,20 +131,30 @@ margin:auto;
   color:white;
   border-radius:5px;
 }
-.logout-wrapper>button{
-  
+.button-link{
+  width:20%;
   display:block;
   margin-left:auto;
+  text-decoration:none;
+  
+}
+.logout-wrapper button{
+  
+  display:block;
+  
   margin-top:20px;
   margin-bottom: 20px;
+  padding:0px;
   color:white;
   background:#0a66c2;
   height:40px;
   font-size:20px;
   border-radius:10px;
   border:none;
-  width:20%;
+  width:100%;
+  cursor:pointer;
 }
+
 
 @media only screen and (max-width:1180px){
   .logout-wrapper>button{

@@ -6,7 +6,7 @@ const Footer =()=>{
     <div className="footer-wrapper" >
       <div className="footer-group">
         <div className="footer-section footer-logo-wrapper">
-          <img src="images/logo.jpg"/>
+          <img src="images/logo.png"/>
           <p>Reuniting families one at a time</p>
         </div>
         <div className="footer-section footer-site-map">

@@ -2,34 +2,48 @@ import "./profile.css"
 import {BsFillCircleFill} from "react-icons/bs"
 import {FiEdit} from "react-icons/fi"
 import {useEffect} from "react"
+import {Context} from "../../context/Context"
+import {useContext, useState} from "react"
+import {Link} from "react-router-dom"
 
 const Profile = () =>{
+ const [edit, setEdit]=useState(false)
+
+  const handleEdit=()=>{
+    if(!edit){
+      setEdit(true)
+    }else{
+      setEdit(false)
+    }
+  }
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
+  const{ user } = useContext(Context)
   return(
     <div className="profile-wrapper">
       <span>BETA</span>
-      <h1>Sadiki Rungo</h1>
+      <h1>{user.firstName + " " + user.lastName}</h1>
       <div className="profile-account-type">
-        <label>Account Type: <input disabled type="text" placeholder="Basic-free"/>
+        <label>Account Type: <input disabled type="text" placeholder={user.accountType}/>
         </label>
       </div>
       <div className="profile-user-info">
         <h2>Update Your information</h2>
         
-        <form className="profile-user-form">
-          <span className="profile-info-edit"><FiEdit/>Edit</span>
+        <form className="profile-user-form " >
+          <span className="profile-info-edit" onClick={handleEdit}><FiEdit/>Edit</span>
           <div className="profile-name-update">
-            <input type="text" placeholder="FirstName"/>
-            <input type="text" placeholder="LaststName"/>
+            <input disabled= {!edit?"disabled":null} type="text" placeholder="FirstName" value={user.firstName}/>
+            <input disabled= {!edit?"disabled":null} type="text" placeholder="LaststName" value={user.lastName}/>
           </div>
-          <input type="text" placeholder="Phone Number"/>
-          <input type="text" placeholder="Email address"/>
-          <input type="text" placeholder="Address"/>
+          <input disabled= {!edit?"disabled":null} type="text" placeholder="Phone Number" value={user.phone}/>
+          <input disabled= {!edit?"disabled":null} type="text" placeholder="Email address" value={user.email}/>
+          <span className="email-verify">Email Verified</span>
+          <input disabled= {!edit?"disabled":null} type="text" placeholder="Address" value={user.address}/>
           <div className="profile-password-update">
-            <input type="password" placeholder="Old passoword"/>
-            <input type ="password" placeholder="New password"/>
+            <input disabled= {!edit?"disabled":null} type="password" placeholder="Old passoword"/>
+            <input disabled= {!edit?"disabled":null} type ="password" placeholder="New password"/>
           </div>
           <button className="profile-update-button">Update</button>
         </form>
@@ -37,10 +51,9 @@ const Profile = () =>{
       <div className="profile-relatives-list">
         <ol>
           <p>Your Relatives:</p>
-          <li>Rafiki Rungo</li>
-          <li>Rafiki Rungo</li>
-          <li>Rafiki Rungo</li>
-          <li>Rafiki Rungo</li>
+           {
+        user.relatives.map((relative) => <li>{relative.name}</li>)
+        }
         </ol>
       </div>
       <div className="profile-billing-history">
@@ -62,7 +75,11 @@ const Profile = () =>{
         </div>
       </div>
       <div className="logout-wrapper">
-        <button>Logout</button>
+        
+        <Link className ="button-link" to="/Login"> 
+          <button>Logout</button> 
+        </Link>
+        
       </div>
     </div>
   )

@@ -45,7 +45,7 @@ const Join =()=>{
   const [passMatch, setPassMatch] = useState(-1)
   const [passCriteria, setPassCriteria]= useState(false)
   const [error, setError] = useState(false);
-
+  const price=useRef()
 //check if passwords match
   useEffect(()=>{
     if(passWord!=="" && document.activeElement===checkPassAgain.current){
@@ -78,8 +78,9 @@ const Join =()=>{
   },[])
   const Location= useLocation()
   const path = location.pathname.split("/")[2];
-  const accountType = accountRef.current.value
   
+  const accountType = accountRef.current.value
+  price.current=path===":price1"?1:path===":price2"?2:null
 
  
   //check if form is filled out and toggle the form with the preview.
@@ -87,7 +88,7 @@ const Join =()=>{
   const togglePreview=(e)=>{
   e.preventDefault()
     
-    if(firstName!=="" && lastName!=="" &&email!== ""&&passWord.length>=8 &&passWord===passAgain&& address!==""&&income!==""&&employer!==""&&frontID!==null&&backID!==null&&selfie!==null&incomeDoc!==null){
+    if(firstName!=="" && lastName!=="" &&email!== ""&&passWord.length>=8 &&passWord===passAgain&& address!==""&&income!==""&&employer!==""&&frontID!==null&&backID!==null&&selfie!==null&incomeDoc!==null&relatives.length!==0){
       if(toggleForm===false){
         setToggleForm(true)
       }else{
@@ -138,6 +139,9 @@ const Join =()=>{
   const addRelative=(e)=>{
     e.preventDefault();
     if(relativeName!==""&&country!==""&&age!==0){
+      if(price.current===1 && relatives.length===1){
+        return;
+      }
       setRelatives([...relatives, {name:relativeName,country:country,age:age}])
       setRelativeName("")
       setCountry("")
@@ -206,7 +210,7 @@ const Join =()=>{
       // const backIdDocument=backIDName.current
       // const selfieDocument=selfieName.current
       // const incomeDocument=incomeDocName.current
-      const res = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
+      const registerUser = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
         firstName,
         lastName,
         email,
@@ -217,6 +221,7 @@ const Join =()=>{
         employer,
         income,
         relatives,
+        price,
         // frontIdDocument,
         // backIdDocument,
         // selfieDocument,
@@ -226,7 +231,21 @@ const Join =()=>{
         selfieDocument:selfieName.current,
         incomeDocument:incomeDocName.current
       });
-      res.data && window.location.replace("/login");
+
+
+      //payment intergration.
+     
+        const payment = await axios.post("https://api.sadikirungo.repl.co/api/payment/payment_session",{
+        registeredUser:registerUser.data,
+        priceId:price.current===1?"price_1LNli1KXArD8nm9Jejpu7XWj":price.current===2?"price_1LNlkaKXArD8nm9JDbvfamki":null,
+        productId:price.current===1?"prod_M5xdf3OGHRLnAe":price.current===2?"prod_M5xfYmoZeiVTIE":null,
+        units:relatives.length
+      });
+      
+      
+      console.log(payment.data)
+      console.log(registerUser.data)
+      // registerUser.data && window.location.replace(payment.url);
     } catch (err) {
       setError(true);
       console.log(err)
@@ -265,7 +284,7 @@ const Join =()=>{
             <span className={"password-match "+(passMatch===1?"green-pass-warning":passMatch===0?"red-pass-warning":null)}>{passMatch===1?"passwords match":passMatch===0?"password don't match":null}</span>
               </div>
               <div className="join-address">
-                <input type="text" placeholder="Address" onChange={(e)=>setAddress(e.target.value)} required/>
+                <input type="text" placeholder="City, Country" onChange={(e)=>setAddress(e.target.value)} required/>
               </div>
               <div className="join-financial">
                <input type="text" placeholder="Yearly Income" onChange={(e)=>setIncome(e.target.value)} required/>
@@ -288,13 +307,13 @@ const Join =()=>{
                   <input type="file" onChange={(e)=>{setFrontID(e.target.files[0])}} required/>
                   <GrDocumentUpload/>
                   
-                  <span>{frontID?"Upload done!":"Upload Front"}</span>
+                  <span>{frontID?"File ready!":"Upload Front"}</span>
                 
                 </label>
                 <label className={"doc-label "+ (backID?"upload-lebel ":"")}>
                   <input type="file" onChange={(e)=>setBackID(e.target.files[0])} required/>
                   <GrDocumentUpload/>
-                  <span>{backID?"Upload done":"Upload Back"}</span>
+                  <span>{backID?"File ready!":"Upload Back"}</span>
                 </label>
               </div>
               <div>
@@ -303,7 +322,7 @@ const Join =()=>{
                 <label className={"doc-label "+ (selfie?"upload-lebel ":"")}>
                   <input type="file" onChange={(e)=>setSelfie(e.target.files[0])}/>
                   <BsFillCameraFill/>
-                  <span>{selfie?"Upload done!":"Camera"}</span>
+                  <span>{selfie?"File ready!":"Camera"}</span>
                 </label>
               </div>
               
@@ -322,7 +341,7 @@ const Join =()=>{
                 <label className={"doc-label "+ (incomeDoc?"upload-lebel ":"")}>
                   <input type="file" onChange={(e)=>setIncomeDoc(e.target.files[0])} required/>
                   <GrDocumentUpload/>
-                  <span>{incomeDoc?"Upload done!":"Upload here"}</span>
+                  <span>{incomeDoc?"File ready!":"Upload here"}</span>
                 </label>
               </div>
             </fieldset>
@@ -415,19 +434,34 @@ const Join =()=>{
           <fieldset>
             <span className="summary-edit" onClick={(e)=>{togglePreview(e); incomeToggle()}}><AiFillEdit/>edit</span>
             <legend>Payment</legend>
-            <div className="payment-label">
-              <label>Base pay:</label>
-              <input disabled type="text" value="$170"/>
+            {price.current ===2&&
+              <div className="payment-label">
+                <label>Base pay:</label>
+                <input disabled type="text" value="$170/month"/>
             </div>
+            }
+            
             <div className="review-number-of-relatives">
-              <p>There is an additional $15 per additional relative. The first relative is charged only the base pay.</p>
-              <label>Relatives - <span>{relatives.length}:</span></label>
-              <input disabled type="text" value="+$15 each"/>
+              {price.current===1?
+                <div>
+                  <div className="summary-total">
+                    <label>Total Payment:</label>
+                    <input disabled type="text" value="$25/month"/>
             </div>
-            <div className="summary-total">
-              <label>Total Payment:</label>
-              <input disabled type="text" value={"$"+(((relatives.length-1)*15)+170)+"/month"}/>
+                </div>
+              :price.current===2?
+                <div>
+                  <p>There is an additional USD $25 per additional relative. The first relative is charged only the base pay.</p>
+                  <label>Relatives - <span>{relatives.length}:</span></label>
+                 <input disabled type="text" value={price.current===1?"Pay $25 only":price.current===2&&relatives.length===1?"$170 only": relatives.length>=2?"+$25 each additional relative":null}/>
+                  <div className="summary-total">
+                    <label>Total Payment:</label>
+                    <input disabled type="text" value={"$"+(((relatives.length-1)*25)+170)+"/month"}/>
             </div>
+                </div>
+            :null
+              }
+              </div>
           </fieldset>
           <button onClick={(e)=>handleSubmit(e)} className="review-submit">Submit & Pay</button>
         </div>

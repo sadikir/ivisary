@@ -1,0 +1,58 @@
+.verify-email-wrapper{
+  display:flex;
+  flex-direction:column;
+  width:70%;
+  margin:auto;
+  background:#e7e9fe;
+}
+.verify-email-wrapper>h1{
+  font-size:45px;
+  text-align:center;
+  color:#0a66c2;
+}
+.verify-email-wrapper>p{
+  text-align:center;
+  font-size:20px;
+}
+.verify-email-wrapper>input{
+  width:70%;
+  margin:auto;
+  font-size:20px;
+  padding-left:10px;
+  height:40px;
+  border-radius:10px;
+  border: 2px solid #0a66c2;
+  
+}
+.wrong-token-warning{
+  text-align:center;
+  color:red;
+  margin-top:20px;
+}
+.display-wrong-token-warning{
+  display:block;
+}
+.hide-wrong-token-warning{
+  display:none;
+}
+.verify-email-wrapper>button{
+  width:20%;
+  height:40px;
+  font-size:20px;
+  background:#0a66c2;
+  color:white;
+  cursor:pointer;
+  margin:auto;
+  margin-top:50px;
+  border:none;
+  border-radius:10px;
+  margin-bottom:50px;
+}
+@media only screen and (max-width:1180px){
+  .verify-email-wrapper{
+    width:100%;
+  }
+  .verify-email-wrapper>button{
+    width:60%;
+  }
+}
