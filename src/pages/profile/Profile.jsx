@@ -3,12 +3,33 @@ import {BsFillCircleFill} from "react-icons/bs"
 import {FiEdit} from "react-icons/fi"
 import {useEffect} from "react"
 import {Context} from "../../context/Context"
-import {useContext, useState} from "react"
+import {useContext, useState,useRef} from "react"
 import {Link} from "react-router-dom"
+import {ImCancelCircle} from "react-icons/im"
+import axios from "axios"
 
 const Profile = () =>{
  const [edit, setEdit]=useState(false)
+ const{ user, dispatch } = useContext(Context)
+ const [firstName,setFirstName]=useState("")
+  const [lastName,setLastName]=useState("")
+  const [oldEmail,setOldEmail]=useState("")
+  const [email, setEmail]=useState("")
+  const [phone, setPhone]=useState("")
+  const [address,setAddress]=useState("")
+  const [oldPass, setOld]=useState("")
+  const [newPass, setNew]=useState("")
+  const [userId, setUserId] = useState("")
 
+useEffect(()=>{
+  setFirstName(user.firstName)
+  setLastName(user.firstName)
+  setPhone(user.phone)
+  setAddress(user.address)
+  setOldEmail(user.email)
+  setUserId(user._id)
+  setEmail(user.email)
+},[])
   const handleEdit=()=>{
     if(!edit){
       setEdit(true)
@@ -16,10 +37,35 @@ const Profile = () =>{
       setEdit(false)
     }
   }
+  const handleForm= async(e)=>{
+    console.log("handle form clicked")
+    dispatch({ type: "UPDATE_START" });
+    try{
+      
+      await axios.put(`https://api.sadikirungo.repl.co/api/profile/${user._id}`,{
+        firstName,
+        lastName,
+        email,
+        oldEmail,
+        phone,
+        address,
+        oldPass,
+        newPass,
+        userId
+      }).then(res=>{
+        dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+        console.log(res.data)
+        return
+      })
+    }catch(err){
+      dispatch({ type: "UPDATE_FAILURE" });
+      console.log(err)
+    }
+  }
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
-  const{ user } = useContext(Context)
+ 
   return(
     <div className="profile-wrapper">
       <span>BETA</span>
@@ -32,27 +78,36 @@ const Profile = () =>{
         <h2>Update Your information</h2>
         
         <form className="profile-user-form " >
-          <span className="profile-info-edit" onClick={handleEdit}><FiEdit/>Edit</span>
+          {!edit?<span className="profile-info-edit" onClick={handleEdit}>
+            <span><FiEdit/>Edit</span>
+          </span>:null}
           <div className="profile-name-update">
-            <input disabled= {!edit?"disabled":null} type="text" placeholder="FirstName" value={user.firstName}/>
-            <input disabled= {!edit?"disabled":null} type="text" placeholder="LaststName" value={user.lastName}/>
+            <input disabled= {!edit?true:false} type="text" placeholder={user.firstName} onChange={(e)=>setFirstName(e.target.value)}/>
+            <input disabled= {!edit?"disabled":null} type="text" placeholder={user.lastName} onChange={(e)=>setLastName(e.target.value)}/>
           </div>
-          <input disabled= {!edit?"disabled":null} type="text" placeholder="Phone Number" value={user.phone}/>
-          <input disabled= {!edit?"disabled":null} type="text" placeholder="Email address" value={user.email}/>
+          <input disabled= {!edit?"disabled":null} type="text" placeholder={user.phone} onChange={(e)=>setPhone(e.target.value)} />
+          
+          <input disabled= {true} type="text" placeholder={user.email} />
           <span className="email-verify">Email Verified</span>
-          <input disabled= {!edit?"disabled":null} type="text" placeholder="Address" value={user.address}/>
+          {!edit?null:<input type="text" placeholder="New Email" onChange={(e)=>setEmail(e.target.value)}/>}
+          
+          
+          <input disabled= {!edit?"disabled":null} type="text" placeholder={user.address} onChange={(e)=>setAddress(e.target.value)}/>
           <div className="profile-password-update">
-            <input disabled= {!edit?"disabled":null} type="password" placeholder="Old passoword"/>
-            <input disabled= {!edit?"disabled":null} type ="password" placeholder="New password"/>
+            <input disabled= {!edit?"disabled":null} type="password" placeholder="Old password" onChange={(e)=>setNew(e.target.value)}/>
+            <input disabled= {!edit?"disabled":null} type ="password" placeholder="New password" onChange={(e)=>setOld(e.target.value)}/>
           </div>
-          <button className="profile-update-button">Update</button>
+          {edit?<button onClick={((e)=>{handleForm(e); handleEdit(e) })} className="profile-update-button">Update</button>
+            :null
+          }
+          
         </form>
       </div>
       <div className="profile-relatives-list">
         <ol>
           <p>Your Relatives:</p>
            {
-        user.relatives.map((relative) => <li>{relative.name}</li>)
+        user.relatives.map((relative) => <li key={relative._id}>{relative.name}</li>)
         }
         </ol>
       </div>

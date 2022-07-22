@@ -25,11 +25,7 @@
   position:relative;
   border-top: 1px solid #0a66c2 ;
 }
-.profile-info-edit{
-  position:absolute;
-  right:10px;
-  top:10px;
-}
+
 .profile-user-form input{
   margin-top:10px;
   border-radius:5px;
@@ -47,6 +43,25 @@
   width:45%;
     box-sizing:border-box;
   
+}
+.profile-info-edit{
+  margin-left:auto;
+  background:white;
+  border-radius:5px;
+  padding:2px 5px 2px 5px;
+  
+}
+
+.cancel-edit{
+  color:red;
+  display:flex;
+  vertical-align:middle;
+  align-items:center;
+  padding:3px;
+  display:block;
+}
+.cancel-edit-icon{
+   margin-right:4px;
 }
 .email-verify{
   color:green;

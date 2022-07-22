@@ -25,8 +25,8 @@ const Login =()=>{
       passWord
     }).then(res=>{
          res&&dispatch({type:"LOGIN_SUCCESS", payload:res.data})
-         console.log(user)
-         res&&window.location.replace("/profile")
+         console.log(res.data._id)
+         res&&window.location.replace("/profile/"+res.data._id)
         return    
     })
     }catch(err){
@@ -45,7 +45,7 @@ const Login =()=>{
           
           <input onChange={((e)=>setEmail(e.target.value))} type = "email" placeholder="Email address"/>
           <input onChange={((e)=>setPassWord(e.target.value))} type ="password" placeholder ="Password"/>
-          <span class="wrong-credential">{error?errorData.response.data:null}</span>
+          <span className="wrong-credential">{error?errorData.response.data:null}</span>
           <button onClick={(e)=>handleSubmit(e)}>Login</button>
         </form>
       </div>

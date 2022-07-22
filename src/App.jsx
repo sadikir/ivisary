@@ -26,7 +26,7 @@ function App() {
         <Route exact path="/about/#pricing" element={<About/>}/>
         
         <Route exact path ="/join/:id" element ={<Join/>}/>
-        <Route exact path ="/profile" element = {<Profile/>}/>
+        <Route exact path ="/profile/:id" element = {<Profile/>}/>
         <Route exact path ="/login" element ={<Login/>}/>
         
         
