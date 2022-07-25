@@ -2,8 +2,9 @@
 import Home from "./pages/home/Home"
 import About from "./pages/about/About"
 import Contact from "./pages/contact/Contact"
-import VerifyEmail from "./pages/verifyEmail/VerifyEmail"
+import Verify from "./pages/join/Verify"
 import Join from "./pages/join/Join"
+import Registeruser from "./pages/join/Registeruser"
 import Profile from "./pages/profile/Profile"
 import Login from "./pages/login/Login"
 import Header from "./components/header/Header"
@@ -28,10 +29,10 @@ function App() {
         <Route exact path ="/join/:id" element ={<Join/>}/>
         <Route exact path ="/profile/:id" element = {<Profile/>}/>
         <Route exact path ="/login" element ={<Login/>}/>
-        
+        <Route exact path ="/registeruser/:id" element={<Registeruser/>}/>
         
         <Route exact path ="/contact" element = {<Contact/>}/>
-        <Route exact path ="/verify/:id" element = {<VerifyEmail/>}/>
+        <Route exact path ="/verify/:userId/:tokenId" element = {<Verify/>}/>
       </Routes>
       <Footer/>
      </div>

@@ -63,11 +63,21 @@
 .cancel-edit-icon{
    margin-right:4px;
 }
-.email-verify{
+.email-verified{
   color:green;
   padding:5px;
 }
-
+.verify-email{
+  color:red;
+  padding:5px;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.check-link{
+  padding:5px;
+  color:green;
+  font-size:20px;
+}
 .profile-password-update{
   display:flex;
   flex-direction:row;

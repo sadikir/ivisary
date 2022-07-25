@@ -33,7 +33,6 @@ const Login =()=>{
       
         setErrorData(err)
         dispatch({type:"LOGIN_FAILURE"})
-        console.log(errorData.response.data)
     }
     }
   }

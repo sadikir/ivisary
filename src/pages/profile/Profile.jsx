@@ -20,10 +20,11 @@ const Profile = () =>{
   const [oldPass, setOld]=useState("")
   const [newPass, setNew]=useState("")
   const [userId, setUserId] = useState("")
+  const [showVerify, setShowVerify]=useState(true)
 
 useEffect(()=>{
   setFirstName(user.firstName)
-  setLastName(user.firstName)
+  setLastName(user.lastName)
   setPhone(user.phone)
   setAddress(user.address)
   setOldEmail(user.email)
@@ -65,7 +66,23 @@ useEffect(()=>{
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
- 
+
+
+  
+ const VerifyEmail = async()=>{
+   setShowVerify(false)
+   console.log(showVerify)
+   setTimeout(
+  () => {setShowVerify(true)
+        console.log(showVerify)}, 
+  60000
+);
+    
+   await axios.post("https://api.sadikirungo.repl.co/api/auth/verifyemail",{
+     email:user.email
+   })
+
+ }
   return(
     <div className="profile-wrapper">
       <span>BETA</span>
@@ -88,14 +105,19 @@ useEffect(()=>{
           <input disabled= {!edit?"disabled":null} type="text" placeholder={user.phone} onChange={(e)=>setPhone(e.target.value)} />
           
           <input disabled= {true} type="text" placeholder={user.email} />
-          <span className="email-verify">Email Verified</span>
+          {user.isVerified
+            ?<span className="email-verified">Email Verified</span>
+            :<span onClick={VerifyEmail} className={showVerify?"verify-email":"check-link"}>{showVerify?"Verify Email":"Check your email for verification link"}</span>
+          }
+          
+          
           {!edit?null:<input type="text" placeholder="New Email" onChange={(e)=>setEmail(e.target.value)}/>}
           
           
           <input disabled= {!edit?"disabled":null} type="text" placeholder={user.address} onChange={(e)=>setAddress(e.target.value)}/>
           <div className="profile-password-update">
-            <input disabled= {!edit?"disabled":null} type="password" placeholder="Old password" onChange={(e)=>setNew(e.target.value)}/>
-            <input disabled= {!edit?"disabled":null} type ="password" placeholder="New password" onChange={(e)=>setOld(e.target.value)}/>
+            <input disabled= {!edit?"disabled":null} type="password" placeholder="Old password" onChange={(e)=>setOld(e.target.value)}/>
+            <input disabled= {!edit?"disabled":null} type ="password" placeholder="New password" onChange={(e)=>setNew(e.target.value)}/>
           </div>
           {edit?<button onClick={((e)=>{handleForm(e); handleEdit(e) })} className="profile-update-button">Update</button>
             :null

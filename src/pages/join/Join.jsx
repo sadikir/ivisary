@@ -26,10 +26,10 @@ const Join =()=>{
   const [backID, setBackID] = useState(null);
   const [selfie, setSelfie]=useState(null);
   const [incomeDoc, setIncomeDoc]= useState(null)
-  const frontIDName = useRef(null)
-  const backIDName = useRef(null)
-  const selfieName = useRef(null)
-  const incomeDocName = useRef(null)
+  const frontIDName = useRef("")
+  const backIDName = useRef("")
+  const selfieName = useRef("")
+  const incomeDocName = useRef("")
   const [relatives, setRelatives]= useState([])
   const basicRef=useRef()
   const identityRef=useRef()
@@ -210,6 +210,8 @@ const Join =()=>{
       // const backIdDocument=backIDName.current
       // const selfieDocument=selfieName.current
       // const incomeDocument=incomeDocName.current
+
+      
       const registerUser = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
         firstName,
         lastName,
