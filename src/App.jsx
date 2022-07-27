@@ -16,6 +16,9 @@ import './App.css';
 import {Context} from "./context/Context";
 function App() {
  const {user}=useContext(Context)
+  window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+});
   
   return (
     <Router>
