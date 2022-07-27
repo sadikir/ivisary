@@ -1,4 +1,12 @@
 @media only screen and (min-width:1335px), (max-width:1335px){
+  .footer_section-wrapper{
+  
+  width:100%;
+  margin-top:30px;
+  background:white;
+  border-top:5px inset #0a66c2;
+  
+}
   .footer-logo-wrapper>img{
   width:150px;
 }
