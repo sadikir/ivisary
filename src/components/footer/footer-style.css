@@ -1,5 +1,6 @@
-/*THE OTHER STYLE FOR LARGER SCREEN IS IN THE APP.CSS FILE.
-*/
+@media only screen and (min-width:1335px), (max-width:1335px){
+  
+}
 @media only screen and (max-width:1180px){
   .footer-group{
   flex-direction:column;

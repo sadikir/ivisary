@@ -16,14 +16,11 @@
 }
 
 
-/*THIS IS THE STYLE FOR THE FOOTER. IT WAS NOT WORKING IN THE FOOTER.CSS ON NETLIFY.
-*/
-@media only screen and (min-width:1335px), (max-width:1335px){
-  .footer_section-wrapper{
-  background:red;
+.footer_section-wrapper{
+  
   width:100%;
   margin-top:30px;
-  background:#fff;
+  background:white;
   border-top:5px inset #0a66c2;
   
 }
@@ -106,5 +103,4 @@
   text-align:center;
   background:#d4e6fe;
   color:#0a66c2;
-}
 }
