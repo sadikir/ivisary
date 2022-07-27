@@ -1,4 +1,4 @@
-import "./footer.css"
+import "./footer-style.css"
 import {BsFacebook,BsLinkedin,BsTwitter} from "react-icons/bs"
 import axios from "axios"
 import {useState} from "react"
