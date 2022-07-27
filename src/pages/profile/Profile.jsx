@@ -63,6 +63,7 @@ useEffect(()=>{
       console.log(err)
     }
   }
+  
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
@@ -83,6 +84,10 @@ useEffect(()=>{
    })
 
  }
+  const handleLogout= ()=>{
+    dispatch({ type: "LOGOUT" });
+    window.location.replace("/login")
+  }
   return(
     <div className="profile-wrapper">
       <span>BETA</span>
@@ -134,8 +139,14 @@ useEffect(()=>{
         </ol>
       </div>
       <div className="profile-billing-history">
-        <h2>Billing History</h2>
-        <p>Next payment will be on <span>10/01/2022</span></p>
+        <h2>Billing </h2>
+        <p>Next payment will be on <span>{user.nextBill}</span></p>
+        
+        {/*
+        create portal session after test mode
+        <Link to={user.portal_session}>Visit Billing Portal</Link>*/}
+        {/* 
+        //Tobe used when showing payment history after using webhooks in the api
         <div className="billing-wrapper">
           <p>09/01/2022</p>
           <p>$150</p>
@@ -149,12 +160,12 @@ useEffect(()=>{
             </span>
             <span>5689</span>
           </p>
-        </div>
+        </div>*/}
       </div>
       <div className="logout-wrapper">
         
         <Link className ="button-link" to="/Login"> 
-          <button>Logout</button> 
+          <button onClick={handleLogout}>Logout</button> 
         </Link>
         
       </div>

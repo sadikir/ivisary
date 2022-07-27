@@ -238,16 +238,20 @@ const Join =()=>{
       //payment intergration.
      
         const payment = await axios.post("https://api.sadikirungo.repl.co/api/payment/payment_session",{
-        registeredUser:registerUser.data,
+        registeredUser:registerUser.data.userId,
+        userEmail:registerUser.data.email,
         priceId:price.current===1?"price_1LNli1KXArD8nm9Jejpu7XWj":price.current===2?"price_1LNlkaKXArD8nm9JDbvfamki":null,
         productId:price.current===1?"prod_M5xdf3OGHRLnAe":price.current===2?"prod_M5xfYmoZeiVTIE":null,
         units:relatives.length
       });
       
       
-      console.log(payment.data)
-      console.log(registerUser.data)
-      // registerUser.data && window.location.replace(payment.url);
+      
+      payment&& localStorage.setItem("sessionId",payment.data.sessionId)
+      if(payment){
+        console.log(payment.url)
+        window.location.href= payment.data.url
+      };
     } catch (err) {
       setError(true);
       console.log(err)

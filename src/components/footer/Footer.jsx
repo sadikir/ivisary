@@ -1,9 +1,24 @@
 import "./footer.css"
 import {BsFacebook,BsLinkedin,BsTwitter} from "react-icons/bs"
+import axios from "axios"
+import {useState} from "react"
+
+
 
 const Footer =()=>{
+ const [email, setEmail]= useState("")
+
+
+  const subscribeEmail=async(e)=>{
+    e.preventDefault()
+    const res = await axios.post("https://api.sadikirungo.repl.co/api/mail/subscribe",{
+      email
+    });
+    res&&console.log(res)
+   }
+  
   return(
-    <div className="footer-wrapper" >
+    <div className="footer_section-wrapper" >
       <div className="footer-group">
         <div className="footer-section footer-logo-wrapper">
           <img src="images/logo.png"/>
@@ -30,8 +45,8 @@ const Footer =()=>{
         <div className="footer-section footer-social">
           
           <div className="footer-newsletter">
-            <input type="email" placeholder="Newsletter Email..."/>
-            <button>Subscribe</button>
+            <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Newsletter Email..."/>
+            <button onClick={(e)=>subscribeEmail(e)}>Subscribe</button>
           </div>
           <div className="footer-social-links">
             <BsFacebook className="social-links facebook-footer" />
