@@ -101,6 +101,7 @@
   .mobile-menu-list>li>a{
   text-decoration:none;
   color:#0a66c2;
+  font-size:20px;
 }
   .mobile-menu-list>li:nth-child(1){
     margin-top:45px;

@@ -16,33 +16,13 @@ const Contact = () =>{
         <p>Edmonton, AB, T5L5C4</p>
         <p>Canada</p>
         <br/>
-        <p>support@ivisary.com</p>
+        <p className="support-email">support@ivisary.com</p>
         <br/>
         <p>Call or text <span>+15879743028</span></p>
       </div>
 
+      <HomeContact/>
       
-      <div className="contact-page-form">
-        <div className="home-contact-wrapper">
-      <div className="form-wrapper">
-        <form className="home-contact-form">
-          <div className="basic-info">
-            <input type="text" placeholder="First Name"/>
-            <input type="text" placeholder="Last Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="tel" placeholder="Phone Number"/>
-          </div>
-          <div className="address-wrapper">
-            <input type="text" placeholder="City,Country"/>
-          </div>
-          <div className="message-wrapper">
-            <textarea placeholder="Type your message here"></textarea>
-          </div>
-          <button className="home-submit">Send Message</button>
-        </form>
-      </div>
-    </div>
-      </div>
     </div>
   )
 }

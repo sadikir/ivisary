@@ -2,19 +2,35 @@ import "./footer-style.css"
 import {BsFacebook,BsLinkedin,BsTwitter} from "react-icons/bs"
 import axios from "axios"
 import {useState} from "react"
+import {FaTiktok} from "react-icons/fa"
+import {Link} from "react-router-dom"
 
 
 
 const Footer =()=>{
  const [email, setEmail]= useState("")
+ const [toggleSubscribeSuccess,setToggleSubscribeSucess]= useState(false)
+ const [toggleSubValidation, setToggleSubValidation] = useState(false)
 
 
   const subscribeEmail=async(e)=>{
     e.preventDefault()
-    const res = await axios.post("https://api.sadikirungo.repl.co/api/mail/subscribe",{
+    setToggleSubValidation(false)
+    if(email!==""){
+      setToggleSubscribeSucess(false)
+      const res = await axios.post("https://api.sadikirungo.repl.co/api/mail/subscribe",{
       email
     });
-    res&&console.log(res)
+      res&&console.log(res)
+      res&&setToggleSubscribeSucess(true);
+      setEmail("")
+      setTimeout(()=>{setToggleSubscribeSucess(false)},10000)
+    }else{
+      setToggleSubValidation(true)
+      setTimeout(()=>{setToggleSubValidation(false)},5000)
+      
+    }
+    
    }
   
   return(
@@ -30,14 +46,14 @@ const Footer =()=>{
           </div>
           <div className="footer-site-links">
             <div className="links-column1">
-             <p>About</p>
-             <p>Pricing</p>
-             <p>Pricing</p>
+             <p><Link to="/about"> About </Link></p>
+             <p><Link to="/about#pricing"> Pricing </Link></p>
+             <p><Link to="/blog">Blog </Link></p>
             </div>
             <div className="links-column2">
-             <p>Blog</p>
-             <p>Contact Us</p>
-             <p>Privacy Policy</p>
+             <p><Link to="/blog">Contact Us</Link></p>
+             <p><Link to="/terms">Terms of service</Link></p>
+             <p><Link to="/policy">Privacy Policy</Link></p>
             </div>
           </div>
           
@@ -45,13 +61,24 @@ const Footer =()=>{
         <div className="footer-section footer-social">
           
           <div className="footer-newsletter">
-            <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Newsletter Email..."/>
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Newsletter Email..."/>
+            <p className={"subscribe-success " + (toggleSubscribeSuccess?"show-subscribe-success":"hide-subscribe-success")}>You subscribed 😄, Thank you!</p>
+            <p className={"sub-validation-error "+ (toggleSubValidation?"show-sub-validation-error":"hide-sub-validation-error")}>Please provide an email</p>
             <button onClick={(e)=>subscribeEmail(e)}>Subscribe</button>
           </div>
           <div className="footer-social-links">
-            <BsFacebook className="social-links facebook-footer" />
-            <BsLinkedin className="social-links linkedin-footer"/>
-            <BsTwitter className="social-links twitter-footer"/>
+            <Link className="social-links" to="https://www.facebook.com/ivisary">
+               <BsFacebook className=" facebook-footer" />
+            </Link>
+            <Link className="social-links" to ="https://www.linkedin.com/company/ivisary">
+              <BsLinkedin className="linkedin-footer"/>
+            </Link>
+            <Link className="social-links" to="https://twitter.com/ivisary_">
+              <BsTwitter className=" twitter-footer"/>
+            </Link>
+            <Link className="social-links" to="https://www.tiktok.com/@ivisary_">
+              <FaTiktok className="tiktok-footer"/>
+            </Link>
           </div>
         </div>
       </div>

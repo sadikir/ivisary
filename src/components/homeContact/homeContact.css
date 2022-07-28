@@ -87,6 +87,34 @@
   cursor:pointer;
   
 }
+.message-success{
+  text-align:center;
+  background:green;
+  color:white;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding:7px;
+}
+.display-success{
+  display:block;
+}
+.hide-success{
+  display:none;
+}
+.validation-error{
+  text-align:center;
+  background:red;
+  color:white;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding:7px;
+}
+.display-validation-error{
+  display:block;
+}
+.hide-validation-error{
+  display:none;
+}
 @media only screen and (max-width:1180px){
 .form-wrapper{
   width:90%;

@@ -266,7 +266,7 @@ const Join =()=>{
           <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
           <div className="account-type-wrapper">
             <label>Subscription Type:</label>
-            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic-Free":path===":price2"?"Fast Tract - $170":undefined}/>
+            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic Sponsorship - $25/month":path===":price2"?"Fast Sponsorship - $170/month":undefined}/>
           </div>
           <div className="basic-info-wrapper" ref={basicRef}>
             <fieldset>

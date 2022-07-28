@@ -7,6 +7,7 @@
 }
 .plain-contact>h1{
   font-size:35px;
+  color:#0a66c2;
 }
 .plain-contact>p{
   font-size:20px;
@@ -14,6 +15,10 @@
 .plain-contact>h3{
   font-size:25px;
   font-weight:800;
+  color:#0a66c2;
+}
+.support-email{
+  color:#0a66c2;
 }
 @media only screen and (max-width:1180px){
   .plain-contact{

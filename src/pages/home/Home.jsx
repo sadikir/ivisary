@@ -23,8 +23,9 @@ const Home=()=>{
       <Steps/>
       <Testimony/>
       <Serving/>
+      <Team/>
       <Pricing/>
-     
+      
      
       <HomeContact/>
   

@@ -41,6 +41,7 @@ const About =()=>{
         </div>
       </div>
       <Steps/>
+      <Team/>
 
       
       {/* Pricing component copied the whole code here to make scroll work*/}
@@ -49,11 +50,11 @@ const About =()=>{
         <div className="price-categories">
           <div className="prices price1">
             <h2>Basic-Free</h2>
-            <h1>$0</h1>
+            <h1>USD $25<span>/Monthly</span></h1>
             <ul>
-              <li>Free Lottery sponsorship</li>
               <li>One relative only</li>
-              <li>Slow & Unguaranteed</li>
+              <li>Lottery sponsorship only</li>
+              <li>Slow processing</li>
               
             </ul>
             <Link to="/join/:price1">
@@ -63,12 +64,12 @@ const About =()=>{
           <div className="prices price2">
             <span className="price-recomend">Popular</span>
             <h2>Fast Track</h2>
-            <h1>$170<span>/Monthly</span></h1>
+            <h1>USD $170<span>/Monthly</span></h1>
             <ul>
-              <li>Fast & Guaranteed</li>
+              <li>$25/additional person</li>
               <li>Up to 7 relatives</li>
-              <li>Plus $15/additional person</li>
-              <li>Immediate processing</li>
+               <li>2-4 years process</li>
+              <li>Fast & Guaranteed</li>
               <li>Recommended</li>
             </ul>
             <Link to="/join/:price2">
@@ -80,7 +81,7 @@ const About =()=>{
             <h1>$Custom</h1>
             <ul>
               <li>Get desired loan</li>
-              <li>5 year term max</li>
+              <li>5 year loan term</li>
               <li>Low fixed rates</li>
             </ul>
             <button type="button" style={{cursor:"not-allowed"}}disabled>Coming soon!</button>
