@@ -3,11 +3,12 @@ import "./join.css"
 import {GrDocumentUpload} from "react-icons/gr"
 import {BsFillCameraFill} from "react-icons/bs"
 import {AiFillEdit} from "react-icons/ai"
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef, useContext} from "react";
 import {useLocation} from "react-router-dom"
 import Relative from "./Relatives"
 import Options from "./Options"
 import axios from "axios"
+import {Context} from "../../context/Context"
 
 const Join =()=>{
   
@@ -44,8 +45,11 @@ const Join =()=>{
   const checkPass=useRef()
   const [passMatch, setPassMatch] = useState(-1)
   const [passCriteria, setPassCriteria]= useState(false)
-  const [error, setError] = useState(false);
+  const [error, setError]= useState(false)
+  
   const price=useRef()
+  
+  const {dispatch, isFetching} = useContext(Context)
 //check if passwords match
   useEffect(()=>{
     if(passWord!=="" && document.activeElement===checkPassAgain.current){
@@ -191,7 +195,8 @@ const Join =()=>{
 
   const handleSubmit = async (e) => {
     
-    setError(false);
+   setError(false)
+    dispatch({type:"LOGIN_START"})
   
     try {
       await axios.post("https://api.sadikirungo.repl.co/api/upload", frontIdData)
@@ -249,11 +254,14 @@ const Join =()=>{
       
       payment&& localStorage.setItem("sessionId",payment.data.sessionId)
       if(payment){
+        dispatch({type:"LOGIN_SUCCESS",payload:null})
         console.log(payment.url)
         window.location.href= payment.data.url
       };
     } catch (err) {
-      setError(true);
+      setError(true)
+      dispatch({type:"LOGIN_FAILURE"})
+      setTimeout(()=>{setError(false)},10000)
       console.log(err)
     }
   };
@@ -266,14 +274,14 @@ const Join =()=>{
           <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
           <div className="account-type-wrapper">
             <label>Subscription Type:</label>
-            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic Sponsorship - $25/month":path===":price2"?"Fast Sponsorship - $170/month":undefined}/>
+            <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic Sponsorship - $25/month":path===":price2"?"Fast Sponsorship - $170/month":""}/>
           </div>
           <div className="basic-info-wrapper" ref={basicRef}>
             <fieldset>
               <legend >Basic Infomation</legend>
               <div className="join-names">
-                <input type="text" value ={firstName} placeholder="Your First Name" onChange={(e)=>setFirstName(e.target.value)} required/>
-                <input type="text"value={lastName} placeholder="Last Name" onChange={(e)=>setLastName(e.target.value)} required/>
+                <input type="text"  placeholder="Your First Name" onChange={(e)=>setFirstName(e.target.value)} required/>
+                <input type="text" placeholder="Last Name" onChange={(e)=>setLastName(e.target.value)} required/>
               </div>
               <div className="join-credential-email">
                 <input type="email" placeholder="Email e.g 'Example@website.com'" onChange={(e)=>setEmail(e.target.value)} required/>
@@ -286,8 +294,8 @@ const Join =()=>{
               </div>
               <div className="join-credential-password">
                 <input ref = {checkPass} type="password" placeholder="Password" onChange={(e)=>setPassWord(e.target.value)} required/>
-                <input ref = {checkPassAgain} type ="password" value={passAgain} placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)} required/>
-            <span className={"password-match "+(passMatch===1?"green-pass-warning":passMatch===0?"red-pass-warning":null)}>{passMatch===1?"passwords match":passMatch===0?"password don't match":null}</span>
+                <input ref = {checkPassAgain} type ="password" placeholder="Re-enter password" onChange={(e)=>setPassAgain(e.target.value)} required/>
+            <span className={"password-match "+(passMatch===1?"green-pass-warning":passMatch===0?"red-pass-warning":undefined)}>{passMatch===1?"passwords match":passMatch===0?"password don't match":undefined}</span>
               </div>
               <div className="join-address">
                 <input type="text" placeholder="City, Country" onChange={(e)=>setAddress(e.target.value)} required/>
@@ -362,9 +370,9 @@ const Join =()=>{
               </div>
               <div className="relatives-form">
                <div className="relative">
-                <input type="text" value={relativeName} onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative"/>
+                <input type="text"  onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative"/>
                 <div className="relative-sub-group">
-                <input type="text" value={country} onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country"/>
+                <input type="text"  onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country"/>
                   {/*<input type="date" placeholder="DOB" onChange={(e)=>setAge(e.target.value)} className="relative-age" placeholder="Age" required/>*/
                   }
                   <select name="ages" className="relative-age" onChange={(e)=>setAge(e.target.value)} >
@@ -437,7 +445,7 @@ const Join =()=>{
               
             </table>
           </fieldset>
-          <fieldset>
+          <fieldset className="payment-summary">
             <span className="summary-edit" onClick={(e)=>{togglePreview(e); incomeToggle()}}><AiFillEdit/>edit</span>
             <legend>Payment</legend>
             {price.current ===2&&
@@ -469,7 +477,16 @@ const Join =()=>{
               }
               </div>
           </fieldset>
-          <button onClick={(e)=>handleSubmit(e)} className="review-submit">Submit & Pay</button>
+          <span className={"user-exist-warning " + (error?"show-user-exist-warning":"hide-user-exist-warning") }>user exists or something else went wrong</span>
+          <button onClick={(e)=>handleSubmit(e)} className="review-submit">Submit & Pay
+          {isFetching
+             ?<div className="joinloadingio-spinner-eclipse-ujuntois5rk">
+               <div className="joinldio-yl1ob84cjcf">
+                <div></div>
+              </div>
+             </div>
+            :null}
+          </button>
         </div>
          
       </div>

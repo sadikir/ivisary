@@ -8,16 +8,18 @@ const Login =()=>{
  const [email,setEmail]=useState("")
  const [passWord, setPassWord]=useState("")
   const [errorData, setErrorData]= useState()
+  const [formFilled, setFormFilled]= useState(false)
   useEffect(()=>{
     window.scrollTo({top:0,left:0, behavior: "smooth"});
   },[])
-  const{dispatch, isFetching, user, error } = useContext(Context)
   
+  const{dispatch, isFetching, user, error } = useContext(Context)
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    setFormFilled(false)
     
-    dispatch({type:"LOGIN_START"})
     if(email!=="" && passWord.length>=8){
+      dispatch({type:"LOGIN_START"})
       try{
       console.log("clicked")
        await axios.post("https://api.sadikirungo.repl.co/api/auth/login",{
@@ -34,6 +36,8 @@ const Login =()=>{
         setErrorData(err)
         dispatch({type:"LOGIN_FAILURE"})
     }
+    }else{
+      setFormFilled(true)
     }
   }
   return(
@@ -45,7 +49,18 @@ const Login =()=>{
           <input onChange={((e)=>setEmail(e.target.value))} type = "email" placeholder="Email address"/>
           <input onChange={((e)=>setPassWord(e.target.value))} type ="password" placeholder ="Password"/>
           <span className="wrong-credential">{error?errorData.response.data:null}</span>
-          <button onClick={(e)=>handleSubmit(e)}>Login</button>
+          <span className={"invalid-form-error " +(formFilled?"show_invalid-form-error":"hide-invalid-form-error")}>Please fill form properly</span>
+          
+          <button onClick={(e)=>handleSubmit(e)}>Login
+            {isFetching
+             ?<div className="loadingio-spinner-eclipse-ujuntois5rk">
+               <div className="ldio-yl1ob84cjcf">
+                <div></div>
+              </div>
+             </div>
+            :null}
+
+          </button>
         </form>
       </div>
     </>
