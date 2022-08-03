@@ -4,7 +4,7 @@ import {GrDocumentUpload} from "react-icons/gr"
 import {BsFillCameraFill} from "react-icons/bs"
 import {AiFillEdit} from "react-icons/ai"
 import {useState, useEffect, useRef, useContext} from "react";
-import {useLocation} from "react-router-dom"
+import {useLocation,Link} from "react-router-dom"
 import Relative from "./Relatives"
 import Options from "./Options"
 import axios from "axios"
@@ -36,7 +36,7 @@ const Join =()=>{
   const identityRef=useRef()
   const incomeRef=useRef()
   const joinRef=useRef();
-  const [age,setAge]=useState(0)
+  const ageRef = useRef()
   const [country, setCountry]= useState("")
   const [relativeName, setRelativeName]= useState("")
    const validateForm= useRef()
@@ -46,6 +46,9 @@ const Join =()=>{
   const [passMatch, setPassMatch] = useState(-1)
   const [passCriteria, setPassCriteria]= useState(false)
   const [error, setError]= useState(false)
+  const [relativeForm, setRelativeForm]=useState(true)
+  const [toggleRelativeNameWarning, setToggleRelativeNameWarning]= useState(false)
+  const [toggleCountryWarning, setToggleCountryWarning] = useState(false)
   
   const price=useRef()
   
@@ -142,17 +145,42 @@ const Join =()=>{
   //adding relative to list of relatives
   const addRelative=(e)=>{
     e.preventDefault();
-    if(relativeName!==""&&country!==""&&age!==0){
-      if(price.current===1 && relatives.length===1){
-        return;
+    ageRef.current= e.target.value
+     console.log("chenged")
+    if(relativeName===""&&country!==""){
+      setToggleRelativeNameWarning(true)
+      setToggleCountryWarning(false)
+      console.log("name empty")
+      e.target.selectedIndex = 0
+    }else if(relativeName!==""&&country===""){
+      setToggleRelativeNameWarning(false)
+      setToggleCountryWarning(true)
+      console.log("country empty")
+      e.target.selectedIndex = 0
+    }else if(relativeName===""&&country===""){
+      setToggleRelativeNameWarning(true)
+      setToggleCountryWarning(true)
+      console.log("name and country empty")
+      e.target.selectedIndex = 0
+    }else{
+      if(relativeName!==""&&country!==""){
+      setToggleRelativeNameWarning(false)
+      setToggleCountryWarning(false)
+      setRelatives([...relatives, {name:relativeName,country:country,age:ageRef.current}])
+      e.target.selectedIndex = 0
+      if(price.current===1 ){
+        setRelativeForm(false)
       }
-      setRelatives([...relatives, {name:relativeName,country:country,age:age}])
-      setRelativeName("")
-      setCountry("")
-      
+       }
     }
+    
   }
- 
+  
+//hide relatives form warnings when user start typing in the forms
+  useEffect(()=>{
+    setToggleRelativeNameWarning(false)
+    setToggleCountryWarning(false)
+  },[relativeName,country])
   //Capturing file and setting file names
   useEffect(()=>{
     if(frontID){
@@ -273,7 +301,7 @@ const Join =()=>{
         <form className={"join-info "+(toggleForm?"hide-forms":"display-forms")} ref={validateForm}>
           <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
           <div className="account-type-wrapper">
-            <label>Subscription Type:</label>
+            <label>Subscription:</label>
             <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic Sponsorship - $25/month":path===":price2"?"Fast Sponsorship - $170/month":""}/>
           </div>
           <div className="basic-info-wrapper" ref={basicRef}>
@@ -364,18 +392,27 @@ const Join =()=>{
             
             <fieldset>
               <legend>Relatives Information</legend>
-              <h4>We need some information about the relatives your want to sponsor.</h4>
+              <h4>Please add all the relatives you want to sponsor</h4>
               <div className="relative-list">
                 {relatives.map(person=><Relative key={Math.random()} relative={person}/>)}
               </div>
               <div className="relatives-form">
-               <div className="relative">
-                <input type="text"  onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative"/>
-                <div className="relative-sub-group">
-                <input type="text"  onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country"/>
-                  {/*<input type="date" placeholder="DOB" onChange={(e)=>setAge(e.target.value)} className="relative-age" placeholder="Age" required/>*/
-                  }
-                  <select name="ages" className="relative-age" onChange={(e)=>setAge(e.target.value)} >
+              {relativeForm
+               
+                ?<div className="relative">  
+                  <div className="relative-input">
+                    <input type="text"  onChange={(e)=>setRelativeName(e.target.value)} className="relative-name" placeholder="Name of relative"/>
+                    <p className={"relative-form-warning " +(toggleRelativeNameWarning?"show-relative-form-warning":"hide-relative-form-warning")}>Please fill this first</p>
+                  </div>
+                 <div className="relative-sub-group">
+                   
+                  <div>
+                    <input type="text"  onChange={(e)=>setCountry(e.target.value)} className="relative-country" placeholder="country"/>
+                    <p  className={"relative-form-warning "+(toggleCountryWarning?"show-relative-form-warning":"hide-relative-form-warning")}>Please fill this first</p>
+                  </div>
+                  
+                  <div>
+                     <select name="ages" ref ={ageRef} className="relative-age" onChange={(e)=>{addRelative(e)}} >
                     <option value="" disabled selected>Age</option>
                     <Options value="0-2" name="0-2"/>
                     <Options value="2-12" name="2-12"/>
@@ -384,8 +421,12 @@ const Join =()=>{
                     <Options value="65-100+" name="65-100+"/>
                   </select>
                   </div>
+                  </div>  
                </div>
-                <button onClick={(e)=>addRelative(e)}>Add <span style={{fontSize:"25px"}}>+</span></button>
+                :<p className="relatives-addition-warning">You can only add 1 relative with this plan 
+                <Link className= "relative-upgrade-link" to="/about#pricing">upgrade plan</Link> 
+                  to add more relatives
+                </p>}
               </div>
             </fieldset>
           </div>
@@ -400,7 +441,7 @@ const Join =()=>{
         <div className={"join-summary "+ (toggleForm? "display-summary":"hide-summary")} ref={joinRef}>
           <h2>Review and verify information</h2>
           <div className="review-account-type">
-            <label>Subscription Type:</label>
+            <label>Subscription:</label>
             <input disabled type="text" value={" "+accountType}/>
           </div>
           <fieldset className="sponsor-information">
@@ -414,9 +455,9 @@ const Join =()=>{
             <p>Phone Number: <span>{phone}</span></p>
             <p>Address: <span>{address}</span></p>
           </fieldset>
-          <fieldset>
+          <fieldset className = "identity-docs">
             <span className="summary-edit" onClick={(e)=>{togglePreview(e);identityToggle()}}><AiFillEdit/>edit</span>
-            <legend>Identity Documents</legend>
+            <legend >Identity Documents</legend>
             <table className="doc-table-review">
               <thead>
                 <tr>

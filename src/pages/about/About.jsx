@@ -28,7 +28,7 @@ const About =()=>{
         <h1>About Us</h1>
         <div className="video-wrapper">
           <div className="video">
-            <video controls poster="https://images.unsplash.com/photo-1509043759401-136742328bb3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80">
+            <video controls poster="/images/poster.jpg">
             <source src={AboutVideo} type="video/mp4"/>
             
             </video>
@@ -41,7 +41,7 @@ const About =()=>{
         </div>
       </div>
       <Steps/>
-      <Team/>
+      
 
       
       {/* Pricing component copied the whole code here to make scroll work*/}

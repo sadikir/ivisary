@@ -8,7 +8,7 @@ const Team =()=>{
      <div className="member-group">
       <div className="team-member">
         <img src="images/teamimg.png"/>
-        <h2>Chris Bell</h2>
+        <h2>Sadiki Rungo</h2>
         <p>CEO and founder</p>
         <div className="team-social">
           <BsFacebook className="social-link facebook" />
