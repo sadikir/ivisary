@@ -51,7 +51,7 @@ const Footer =()=>{
              <p><Link to="/blog">Blog </Link></p>
             </div>
             <div className="links-column2">
-             <p><Link to="/blog">Contact Us</Link></p>
+             <p><Link to="/contact">Contact Us</Link></p>
              <p><Link to="/terms">Terms of service</Link></p>
              <p><Link to="/policy">Privacy Policy</Link></p>
             </div>

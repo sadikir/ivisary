@@ -299,7 +299,7 @@ const Join =()=>{
       <div className="join-wrapper">
         <h1>Join Us</h1>
         <form className={"join-info "+(toggleForm?"hide-forms":"display-forms")} ref={validateForm}>
-          <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</h5>
+          <h5>The first step you can take is joining us by subscribing to one of our plans. We will make sure we provide exceptional service to you. Trust us with your family sponsorship needs today!</h5>
           <div className="account-type-wrapper">
             <label>Subscription:</label>
             <input ref={accountRef} disabled type="text" value={path===":price1"?"Basic Sponsorship - $25/month":path===":price2"?"Fast Sponsorship - $170/month":""}/>
@@ -360,7 +360,7 @@ const Join =()=>{
               </div>
               <div>
                 <h4>Take a selfie now</h4>
-                <p>We would like to see if your the right person in the document you uploaded above. Please take a selfie of yourself.</p>
+                <p>We would like to see if your the person in the document you uploaded above. Please take a selfie of yourself.</p>
                 <label className={"doc-label "+ (selfie?"upload-lebel ":"")}>
                   <input type="file" onChange={(e)=>setSelfie(e.target.files[0])}/>
                   <BsFillCameraFill/>

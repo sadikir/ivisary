@@ -8,6 +8,7 @@ import Registeruser from "./pages/join/Registeruser"
 import Profile from "./pages/profile/Profile"
 import Login from "./pages/login/Login"
 import Header from "./components/header/Header"
+import NotFound from "./components/404/NotFound"
 import Footer from "./components/footer/Footer"
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {useContext} from "react"
@@ -38,6 +39,7 @@ function App() {
         
         <Route exact path ="/contact" element = {<Contact/>}/>
         <Route exact path ="/verify/:userId/:tokenId" element = {<Verify/>}/>
+        <Route exact path ="*" element = {<NotFound/>}/>
       </Routes>
       <Footer/>
      </div>

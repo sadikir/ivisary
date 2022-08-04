@@ -11,6 +11,7 @@ import {Context} from "../../context/Context"
 
 
 const Header = ()=>{
+  const { user,dispatch} = useContext(Context)
   //Hide and show mobile menu
   let [menu, setMenu] = useState(false);
   const toggleMenu=()=>{
@@ -20,7 +21,11 @@ const Header = ()=>{
       setMenu(false)
     }
   }
-  
+  //   const handleLogout= ()=>{
+  //     console.log("clicked")
+  //   dispatch({ type: "LOGOUT" });
+  //  // window.location.replace("/login")
+  // }
   return (
     <div className="header">
     <img className = "logoImg" src="/images/logo.png" />
@@ -31,8 +36,19 @@ const Header = ()=>{
         <li><Link to ="/about/#pricing"><ImPriceTag className="menuIcon"/> Pricing</Link></li>
          <li><Link to ="/contact"><AiTwotonePhone className="menuIcon"/> Contact</Link></li>
         <li className="header-blog"><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/about/#pricing">SignUp</Link></li>
+         {user
+         ?<>
+           <li><Link to={"/profile/"+user._id}>Account</Link></li>
+           
+         </>
+         :<>
+           <li><Link to="/login">Login</Link></li>
+           <li><Link to="/about/#pricing">SignUp</Link></li>
+         </>
+           
+         }
+        
+         
        </ul>
       </div>
       <div className= "mobile-menu">
@@ -48,8 +64,15 @@ const Header = ()=>{
             <li onClick={toggleMenu}><Link to ="/about/#pricing"><ImPriceTag className="menuIcon"/> Pricing</Link></li>
             <li onClick={toggleMenu}><Link to ="/contact"><AiTwotonePhone className="menuIcon"/> Contact</Link></li>
            <li className="header-blog" onClick={toggleMenu}><Link to = "/blog"><FaRegNewspaper className="menuIcon"/>Blog</Link></li>
-            <li onClick={toggleMenu}><Link to="/login">Login</Link></li>
-            <li onClick={toggleMenu}><Link to="/about/#pricing">SignUp</Link></li>
+            {user
+            ?<>
+               <li onClick={toggleMenu}><Link to={"/profile/"+user._id}>Account</Link></li>
+            </>
+            :<>
+              <li onClick={toggleMenu}><Link to="/login">Login</Link></li>
+              <li onClick={toggleMenu}><Link to="/about/#pricing">SignUp</Link></li>
+            </>
+            }
           </ul>
         </div>
       </div>
