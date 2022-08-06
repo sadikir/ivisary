@@ -1,6 +1,7 @@
 import "./homeContact.css"
 import axios from "axios";
 import {useState} from "react"
+import {SERVER_URL} from "../../App.jsx"
 
 const HomeContact=()=>{
   const [firstName, setFirstName]= useState("")
@@ -17,7 +18,7 @@ const HomeContact=()=>{
     setToggleMessageSuccess(false)
     setValidation(false)
     if(firstName!==""&&lastName!==""&&email!==""&&location!==""&&message!==""&&phone!==""){
-      const res= await axios.post("https://api.sadikirungo.repl.co/api/contact/email",{
+      const res= await axios.post(`${SERVER_URL}/api/contact/email`,{
       firstName,
       lastName,
       email,

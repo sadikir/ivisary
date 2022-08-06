@@ -2,6 +2,7 @@ import "./login.css"
 import {useEffect, useRef,useState, useContext} from "react";
 import {Context} from "../../context/Context"
 import axios from "axios"
+import {SERVER_URL} from "../../App.jsx"
 
 
 const Login =()=>{
@@ -22,7 +23,7 @@ const Login =()=>{
       dispatch({type:"LOGIN_START"})
       try{
       console.log("clicked")
-       await axios.post("https://api.sadikirungo.repl.co/api/auth/login",{
+       await axios.post(`${SERVER_URL}/api/auth/login`,{
       email,
       passWord
     }).then(res=>{

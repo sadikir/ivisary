@@ -4,6 +4,7 @@ import {useLocation} from "react-router-dom"
 import axios from "axios"
 import {Context} from "../../context/Context"
 import {useContext} from "react"
+import {SERVER_URL} from "../../App.jsx"
 
 const Verify =()=>{
    const {dispatch} = useContext(Context)
@@ -19,7 +20,7 @@ const Verify =()=>{
    const Request = async ()=>{
       if(localStorage.getItem(tokenId)===null){
         localStorage.setItem(tokenId,"okay")
-      const res= await axios.put(`https://api.sadikirungo.repl.co/api/auth/verify/${userId}`,{
+      const res= await axios.put(`${SERVER_URL}/api/auth/verify/${userId}`,{
         tokenId,
         userId
       });

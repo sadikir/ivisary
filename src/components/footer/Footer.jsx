@@ -4,6 +4,7 @@ import axios from "axios"
 import {useState} from "react"
 import {FaTiktok} from "react-icons/fa"
 import {Link} from "react-router-dom"
+import {SERVER_URL} from "../../App.jsx"
 
 
 
@@ -18,7 +19,7 @@ const Footer =()=>{
     setToggleSubValidation(false)
     if(email!==""){
       setToggleSubscribeSucess(false)
-      const res = await axios.post("https://api.sadikirungo.repl.co/api/mail/subscribe",{
+      const res = await axios.post(`${SERVER_URL}/api/mail/subscribe`,{
       email
     });
       res&&console.log(res)

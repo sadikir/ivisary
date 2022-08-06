@@ -9,6 +9,7 @@ import Relative from "./Relatives"
 import Options from "./Options"
 import axios from "axios"
 import {Context} from "../../context/Context"
+import {SERVER_URL} from "../../App.jsx"
 
 const Join =()=>{
   
@@ -227,15 +228,15 @@ const Join =()=>{
     dispatch({type:"LOGIN_START"})
   
     try {
-      await axios.post("https://api.sadikirungo.repl.co/api/upload", frontIdData)
+      await axios.post(`${SERVER_URL}/api/upload`, frontIdData)
       .then(response=>{
-        return  axios.post("https://api.sadikirungo.repl.co/api/upload", backIdData);
+        return  axios.post(`${SERVER_URL}/api/upload`, backIdData);
       })
       .then(response=>{
-        return  axios.post("https://api.sadikirungo.repl.co/api/upload", selfieData);
+        return  axios.post(`${SERVER_URL}/api/upload`, selfieData);
       })
       .then(response=>{
-        return  axios.post("https://api.sadikirungo.repl.co/api/upload", incomeData);
+        return  axios.post(`${SERVER_URL}/api/upload`, incomeData);
       })
       
       
@@ -245,7 +246,7 @@ const Join =()=>{
       // const incomeDocument=incomeDocName.current
 
       
-      const registerUser = await axios.post("https://api.sadikirungo.repl.co/api/auth/register", {
+      const registerUser = await axios.post(`${SERVER_URL}/api/auth/register`, {
         firstName,
         lastName,
         email,
@@ -270,7 +271,7 @@ const Join =()=>{
 
       //payment intergration.
      
-        const payment = await axios.post("https://api.sadikirungo.repl.co/api/payment/payment_session",{
+        const payment = await axios.post(`${SERVER_URL}/api/payment/payment_session`,{
         registeredUser:registerUser.data.userId,
         userEmail:registerUser.data.email,
         priceId:price.current===1?"price_1LNli1KXArD8nm9Jejpu7XWj":price.current===2?"price_1LNlkaKXArD8nm9JDbvfamki":null,

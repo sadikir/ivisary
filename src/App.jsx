@@ -10,14 +10,23 @@ import Login from "./pages/login/Login"
 import Header from "./components/header/Header"
 import NotFound from "./components/404/NotFound"
 import Footer from "./components/footer/Footer"
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, useLocation} from "react-router-dom";
 import {useContext} from "react"
 import React from 'react';
 import './App.css';
 import {Context} from "./context/Context";
+export let SERVER_URL=""
+
 function App() {
  const {user}=useContext(Context)
-
+  const url= window.location.href;
+  const domain =(new URL(url))
+  console.log(domain.hostname)
+  if(domain.hostname==="ivisary.sadikirungo.repl.co"){
+    SERVER_URL="https://api.sadikirungo.repl.co"
+  }else if(domain.hostname==="ivisary.com"){
+    SERVER_URL="https://ivisary.herokuapp.com"
+  }
   
   window.addEventListener('load', (event) => {
          console.log('page is fully loaded');

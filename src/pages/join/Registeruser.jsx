@@ -3,6 +3,7 @@ import {useEffect,useState, useContext} from "react"
 import {useLocation} from "react-router-dom"
 import axios from "axios"
 import {Context} from "../../context/Context"
+import {SERVER_URL} from "../../App.jsx"
 
 const Registeruser =()=>{
 
@@ -16,7 +17,7 @@ const Registeruser =()=>{
     const Request = async()=>{
       if(localStorage.getItem(finalId)===null){
       localStorage.setItem(finalId,"okay")
-      await axios.post(`https://api.sadikirungo.repl.co/api/auth/paid`,{
+      await axios.post(`${SERVER_URL}/api/auth/paid`,{
         userId:finalId,
         sessionId:localStorage.getItem("sessionId")
       }).then(response=>{

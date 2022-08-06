@@ -7,6 +7,7 @@ import {useContext, useState,useRef} from "react"
 import {Link} from "react-router-dom"
 import {ImCancelCircle} from "react-icons/im"
 import axios from "axios"
+import {SERVER_URL} from "../../App.jsx"
 
 const Profile = () =>{
  const [edit, setEdit]=useState(false)
@@ -43,7 +44,7 @@ useEffect(()=>{
     dispatch({ type: "UPDATE_START" });
     try{
       
-      await axios.put(`https://api.sadikirungo.repl.co/api/profile/${user._id}`,{
+      await axios.put(`${SERVER_URL}/api/profile/${user._id}`,{
         firstName,
         lastName,
         email,
@@ -79,7 +80,7 @@ useEffect(()=>{
   60000
 );
     
-   await axios.post("https://api.sadikirungo.repl.co/api/auth/verifyemail",{
+   await axios.post(`${SERVER_URL}/api/auth/verifyemail`,{
      email:user.email
    })
 
