@@ -274,8 +274,8 @@ const Join =()=>{
         const payment = await axios.post(`${SERVER_URL}/api/payment/payment_session`,{
         registeredUser:registerUser.data.userId,
         userEmail:registerUser.data.email,
-        priceId:price.current===1?"price_1LNli1KXArD8nm9Jejpu7XWj":price.current===2?"price_1LNlkaKXArD8nm9JDbvfamki":null,
-        productId:price.current===1?"prod_M5xdf3OGHRLnAe":price.current===2?"prod_M5xfYmoZeiVTIE":null,
+        priceId:price.current===1?"price_1LVOUjKXArD8nm9JzGCbvB8w":price.current===2?"price_1LVOUuKXArD8nm9Jve5KxPLI":null,
+        productId:price.current===1?"prod_MDqB85y9xR85fj":price.current===2?"prod_MDqBq2IHtY1xfY":null,
         units:relatives.length
       });
       
