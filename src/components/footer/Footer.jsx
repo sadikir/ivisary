@@ -68,7 +68,7 @@ const Footer =()=>{
             <button onClick={(e)=>subscribeEmail(e)}>Subscribe</button>
           </div>
           <div className="footer-social-links">
-            <Link className="social-links" to="https://www.facebook.com/ivisary">
+            {/*<Link className="social-links" to="https://www.facebook.com/ivisary">
                <BsFacebook className=" facebook-footer" />
             </Link>
             <Link className="social-links" to ="https://www.linkedin.com/company/ivisary">
@@ -79,7 +79,7 @@ const Footer =()=>{
             </Link>
             <Link className="social-links" to="https://www.tiktok.com/@ivisary_">
               <FaTiktok className="tiktok-footer"/>
-            </Link>
+            </Link>*/}
           </div>
         </div>
       </div>
