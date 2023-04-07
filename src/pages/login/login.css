@@ -22,7 +22,7 @@ background: linear-gradient(90deg, rgba(135,190,244,1) 0%, rgba(207,228,250,1) 4
 }
 .login-wrapper>form>input[type=password]{
 width:85%;
-  box-sizing;border-box;
+  box-sizing:border-box;
   margin-top:20px;
   border-radius:10px;
   height:30px;
@@ -32,7 +32,7 @@ width:85%;
 }
 .login-wrapper>form>input[type=email]{
  width:85%;
-  box-sizing;border-box;
+  box-sizing:border-box;
   border-radius:10px;
   height:30px;
   border:none;
