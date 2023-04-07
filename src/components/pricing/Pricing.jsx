@@ -10,7 +10,7 @@ const Pricing = ()=>{
         <h1>Pricing</h1>
         <div className="price-categories">
           <div className="prices price1">
-            <h2>Basic-Free</h2>
+            <h2>Basic</h2>
             <h1>USD $25<span>/Monthly</span></h1>
             <ul>
               <li>One relative only</li>
