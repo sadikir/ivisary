@@ -10,7 +10,7 @@
 }
 .steps{
   display: flex;
-  flex-directin:row;
+  flex-direction:row;
 }
 .step1,.step2,.step3{
   width:30%;
