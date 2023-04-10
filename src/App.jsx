@@ -10,6 +10,7 @@ import Login from "./pages/login/Login"
 import Header from "./components/header/Header"
 import NotFound from "./components/404/NotFound"
 import Footer from "./components/footer/Footer"
+import HomeBlog from "./components/homeBlog/HomeBlog"
 import {BrowserRouter as Router, Routes, Route, useLocation} from "react-router-dom";
 import {useContext} from "react"
 import React from 'react';
