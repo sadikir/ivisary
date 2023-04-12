@@ -27,7 +27,7 @@ const Pricing = ()=>{
             <h2>Fast Track</h2>
             <h1>USD $170<span>/Monthly</span></h1>
             <ul>
-              <li>$25/additional person</li>
+              <li>+$25/additional person</li>
               <li>Up to 7 relatives</li>
                <li>2-4 years process</li>
               <li>Fast & Guaranteed</li>
