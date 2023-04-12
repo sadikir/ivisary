@@ -25,7 +25,7 @@ const Home=()=>{
       <Testimony/>
       <Serving/>
       <Pricing/>
-     <HomeBlog/>
+      {/*<HomeBlog/>*/}
       <HomeContact/>
   
     </>
